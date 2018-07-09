@@ -85,13 +85,13 @@ public class MenuController extends BaseController
     	return new ResultData(Result.SUCCESS,"查询成功",menuService.getById(id));
     }
 	
-
-//    @GetMapping("/del")
-//     @ApiImplicitParam(name="id",value="id",dataType="String", paramType = "query",required=true)
-//    public ResultData delete(String id) {
-//        menuService.deleteById(id);
-//        return new ResultData(Result.SUCCESS, "删除成功", null);
-//    }
+    @ApiOperation("删除导航接口")
+    @GetMapping("/del")
+     @ApiImplicitParam(name="id",value="id",dataType="String", paramType = "query",required=true)
+    public ResultData delete(String id) {
+        menuService.deleteById(id);
+        return new ResultData(Result.SUCCESS, "删除成功", null);
+    }
 	
 	
 	
