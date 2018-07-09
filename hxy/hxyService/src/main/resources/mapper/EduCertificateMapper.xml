@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.simple.mapper.EduCertificateMapper">
+	<resultMap id="BaseResultMap" type="com.simple.domain.po.EduCertificate">
+		<id column="id" jdbcType="VARCHAR" property="id" />
+		<result column="type" jdbcType="VARCHAR" property="type" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="description" jdbcType="VARCHAR" property="description" />
+		<result column="link" jdbcType="VARCHAR" property="link" />
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="create_by" jdbcType="VARCHAR" property="createBy" />
+		<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+	</resultMap>
+	
+	<sql id="allColumns">
+	    `id`,`type`,`name`,`description`,`link`,`create_time`,`create_by`,`update_time`,`update_by` 
+	</sql>
+
+	<sql id="dynamicWhereConditions">
+	        where 1 = 1
+		<if test=" null != id "> and `id` = #{id} </if>    
+		<if test=" null != type "> and `type` = #{type} </if>    
+		<if test=" null != name "> and `name` = #{name} </if>    
+		<if test=" null != description "> and `description` = #{description} </if>    
+		<if test=" null != link "> and `link` = #{link} </if>    
+		<if test=" null != createTime "> and `create_time` = #{createTime} </if>    
+		<if test=" null != createTimeGte ">  and `create_time`  >= #{createTimeGte} </if>  
+		<if test=" null != createTimeLte "> and #{createTimeLte}  >=  `create_time` </if>  
+		<if test=" null != createBy "> and `create_by` = #{createBy} </if>    
+		<if test=" null != updateTime "> and `update_time` = #{updateTime} </if>    
+		<if test=" null != updateTimeGte ">  and `update_time`  >= #{updateTimeGte} </if>  
+		<if test=" null != updateTimeLte "> and #{updateTimeLte}  >=  `update_time` </if>  
+		<if test=" null != updateBy "> and `update_by` = #{updateBy} </if>    
+		<if test=" null != ids ">
+		 	and id in  
+			<foreach collection="ids" index="index" item="idItem" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+		</if>		
+		<if test=" null != sortColumns"> order by ${sortColumns} </if>
+	</sql>
+	
+	<select id="findList" parameterType="com.simple.domain.po.EduCertificate" resultMap="BaseResultMap">
+		select <include refid="allColumns" /> from eduCertificate
+		<include refid="dynamicWhereConditions" />
+	</select>
+	
+	
+	
+	
+	
+	
+</mapper>
