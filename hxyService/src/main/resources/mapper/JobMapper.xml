@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.simple.mapper.JobMapper">
+	<resultMap id="BaseResultMap" type="com.simple.domain.po.Job">
+		<id column="id" jdbcType="VARCHAR" property="id" />
+		<result column="title" jdbcType="VARCHAR" property="title" />
+		<result column="pic_url" jdbcType="VARCHAR" property="picUrl" />
+		<result column="job_desc" jdbcType="VARCHAR" property="jobDesc" />
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="create_by" jdbcType="VARCHAR" property="createBy" />
+		<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+	</resultMap>
+	
+	<sql id="allColumns">
+	    `id`,`title`,`pic_url`,`job_desc`,`create_time`,`create_by`,`update_time`,`update_by` 
+	</sql>
+
+	<sql id="dynamicWhereConditions">
+	        where 1 = 1
+		<if test=" null != id "> and `id` = #{id} </if>    
+		<if test=" null != title "> and `title` = #{title} </if>    
+		<if test=" null != picUrl "> and `pic_url` = #{picUrl} </if>    
+		<if test=" null != jobDesc "> and `job_desc` = #{jobDesc} </if>    
+		<if test=" null != createTime "> and `create_time` = #{createTime} </if>    
+		<if test=" null != createTimeGte ">  and `create_time`  >= #{createTimeGte} </if>  
+		<if test=" null != createTimeLte "> and #{createTimeLte}  >=  `create_time` </if>  
+		<if test=" null != createBy "> and `create_by` = #{createBy} </if>    
+		<if test=" null != updateTime "> and `update_time` = #{updateTime} </if>    
+		<if test=" null != updateTimeGte ">  and `update_time`  >= #{updateTimeGte} </if>  
+		<if test=" null != updateTimeLte "> and #{updateTimeLte}  >=  `update_time` </if>  
+		<if test=" null != updateBy "> and `update_by` = #{updateBy} </if>    
+		<if test=" null != ids ">
+		 	and id in  
+			<foreach collection="ids" index="index" item="idItem" open="(" separator="," close=")">
+			#{idItem}
+			</foreach>
+		</if>		
+		<if test=" null != sortColumns"> order by ${sortColumns} </if>
+	</sql>
+	
+	<select id="findList" parameterType="com.simple.domain.po.Job" resultMap="BaseResultMap">
+		select <include refid="allColumns" /> from job
+		<include refid="dynamicWhereConditions" />
+	</select>
+	
+	
+	
+	
+	
+	
+</mapper>
