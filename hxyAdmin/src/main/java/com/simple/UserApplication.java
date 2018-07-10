@@ -3,8 +3,9 @@ package com.simple;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.EnableMBeanExport;
-import org.springframework.jmx.support.RegistrationPolicy;
+import org.springframework.context.annotation.Import;
+
+import com.github.tobato.fastdfs.FdfsClientConfig;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
@@ -15,8 +16,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @MapperScan(basePackages = {"com.simple.mapper"})
 @EnableSwagger2
-//解决jmx重复注册bean的问题
-@EnableMBeanExport(registration = RegistrationPolicy.IGNORE_EXISTING)
+@Import(FdfsClientConfig.class)
 public class UserApplication {
 
 	public static void main(String[] args) {

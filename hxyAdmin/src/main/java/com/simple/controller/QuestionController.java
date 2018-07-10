@@ -12,11 +12,16 @@ import com.simple.annotation.HoldBegin;
 import com.simple.annotation.HoldEnd;
 import com.simple.domain.po.Question;
 import com.simple.service.QuestionService;
+
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 @RestController
 @RequestMapping("question")
+@Api(description="常见问题维护")
 public class QuestionController extends BaseController
 {
 	@Autowired
@@ -24,6 +29,7 @@ public class QuestionController extends BaseController
 
     private Logger logger = Logger.getLogger(QuestionController.class);
 
+    @ApiOperation("列表")
     @GetMapping("list")
         @ApiImplicitParams({
     	  @ApiImplicitParam(name="pageNum",value="页数",dataType="int", paramType = "query",required=true),
@@ -35,7 +41,7 @@ public class QuestionController extends BaseController
     }
 
     @PostMapping("add")
-    public ResultData add(@ModelAttribute Question question) {
+    public ResultData add(@ApiParam Question question) {
         //Assert.notNull(question.getName(), "角色名不能为空");
         //Assert.isTrue(!checkUnique(sysRole.getName(), null), "重复的角色名");
         questionService.saveOrUpdate(question);

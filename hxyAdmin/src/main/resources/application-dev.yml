@@ -21,6 +21,8 @@ spring:
     maxOpenPreparedStatements: 20
   jackson: 
     date-format: yyyy-MM-dd HH:mm:ss
+  jmx:
+    enabled: false
 
   # REDIS
   redis:
@@ -29,9 +31,9 @@ spring:
     timeout: 0
     expire: 1800 #30分钟
     pool:
-      max-active: 8
-      max-idle: 8
-      max-wait: -1
+      max-active: 28
+      max-idle: 28
+      max-wait: 60
       min-idle: 0
 
 logging:
@@ -46,6 +48,4 @@ fdfs:
     height: 150
   trackerList:            #TrackerList参数,支持多个
     - 39.106.160.245:22122
-  pool:
-    max-total: 100
-    max-wait-millis: 60
+  webPath: http://39.106.160.245:8080
