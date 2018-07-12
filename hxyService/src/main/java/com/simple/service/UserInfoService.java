@@ -41,8 +41,7 @@ public interface UserInfoService {
     void deleteById(String id);
     
 	
-	
-
+    UserInfo getByUserName(String username);
 	
     /**
      * 查询用户名总数，用于校验用户名是否重复
@@ -50,12 +49,14 @@ public interface UserInfoService {
      */
     long cntByUserName(String username);
 
-    /**
-     * 根据用户名查询用户对象
-     * @param username
-     * @return
-     */
-    UserInfo getByName(String username);
+//    /**
+//     * 根据用户名查询用户对象
+//     * @param username
+//     * @return
+//     */
+//    UserInfo getByName(String username);
+    
+    
 
     /**
      * 删除用户相关数据(用户记录，角色关联)

@@ -8,7 +8,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,8 +23,6 @@ public class FastDFSClientWrapper {
     @Autowired
     private FastFileStorageClient storageClient;
 
-    @Value("${fdfs.webPath}")
-    private String webPath;
 
     /**
      * 上传文件
@@ -48,14 +45,15 @@ public class FastDFSClientWrapper {
         byte[] buff = content.getBytes(Charset.forName("UTF-8"));
         ByteArrayInputStream stream = new ByteArrayInputStream(buff);
         StorePath storePath = storageClient.uploadFile(stream,buff.length, fileExtension,null);
-        return getResAccessUrl(storePath);
+        return storePath.getFullPath(); 
+//        return getResAccessUrl(storePath);
     }
 
     // 封装图片完整URL地址
     private String getResAccessUrl(StorePath storePath) {
 //        String fileUrl = AppConstants.HTTP_PRODOCOL + appConfig.getResHost()
 //                + ":" + appConfig.getFdfsStoragePort() + "/" + storePath.getFullPath();
-    	String fileUrl = webPath + "/"+storePath.getFullPath(); 
+    	String fileUrl = storePath.getFullPath(); 
     	return fileUrl;
     }
 

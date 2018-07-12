@@ -12,9 +12,11 @@ import com.simple.annotation.HoldBegin;
 import com.simple.annotation.HoldEnd;
 import com.simple.domain.po.News;
 import com.simple.service.NewsService;
+
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
-
+@Api(description="新闻相关接口")
 @RestController
 @RequestMapping("news")
 public class NewsController extends BaseController
@@ -35,7 +37,7 @@ public class NewsController extends BaseController
     }
 
     @PostMapping("add")
-    public ResultData add(@ModelAttribute News news) {
+    public ResultData add(@RequestBody News news) {
         //Assert.notNull(news.getName(), "角色名不能为空");
         //Assert.isTrue(!checkUnique(sysRole.getName(), null), "重复的角色名");
         newsService.saveOrUpdate(news);
@@ -43,7 +45,7 @@ public class NewsController extends BaseController
     }
 
     @PostMapping("update")
-    public ResultData update(@ModelAttribute  News news) {
+    public ResultData update(@RequestBody  News news) {
         newsService.saveOrUpdate(news);
         return new ResultData();
     }
@@ -55,6 +57,10 @@ public class NewsController extends BaseController
         return new ResultData(Result.SUCCESS, "删除成功", null);
     }
 	
-	
+    @GetMapping("/findById")
+    @ApiImplicitParam(name="id",value="id",dataType="String", paramType = "query",required=true)
+   public ResultData findById(String id) {
+       return new ResultData(Result.SUCCESS, "成功", newsService.getById(id));
+   }
 	
 }

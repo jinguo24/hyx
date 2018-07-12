@@ -53,10 +53,17 @@ public class UserInfoServiceImpl implements UserInfoService {
     
     
     
+//    @Override
+//    public UserInfo getByName(String name) {
+//        UserInfo userInfo = new UserInfo();
+//        userInfo.setName(name);
+//        return userInfoMapper.selectOne(userInfo);
+//    }
+    
     @Override
-    public UserInfo getByName(String username) {
+    public UserInfo getByUserName(String username) {
         UserInfo userInfo = new UserInfo();
-        userInfo.setName(username);
+        userInfo.setUsername(username);
         return userInfoMapper.selectOne(userInfo);
     }
     

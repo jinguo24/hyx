@@ -12,9 +12,13 @@ import com.simple.annotation.HoldBegin;
 import com.simple.annotation.HoldEnd;
 import com.simple.domain.po.MeetInfo;
 import com.simple.service.MeetInfoService;
+
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiParam;
 
+@Api(description="用户预约接口")
 @RestController
 @RequestMapping("meetInfo")
 public class MeetInfoController extends BaseController
@@ -24,6 +28,8 @@ public class MeetInfoController extends BaseController
 
     private Logger logger = Logger.getLogger(MeetInfoController.class);
 
+    
+    @ApiParam("用户预约查看")
     @GetMapping("list")
         @ApiImplicitParams({
     	  @ApiImplicitParam(name="pageNum",value="页数",dataType="int", paramType = "query",required=true),
@@ -34,20 +40,22 @@ public class MeetInfoController extends BaseController
         return new ResultData(page);
     }
 
+    @ApiParam("新增用户预约")
     @PostMapping("add")
-    public ResultData add(@ModelAttribute MeetInfo meetInfo) {
+    public ResultData add(@RequestBody MeetInfo meetInfo) {
         //Assert.notNull(meetInfo.getName(), "角色名不能为空");
         //Assert.isTrue(!checkUnique(sysRole.getName(), null), "重复的角色名");
         meetInfoService.saveOrUpdate(meetInfo);
         return new ResultData();
     }
 
-    @PostMapping("update")
-    public ResultData update(@ModelAttribute  MeetInfo meetInfo) {
-        meetInfoService.saveOrUpdate(meetInfo);
-        return new ResultData();
-    }
+//    @PostMapping("update")
+//    public ResultData update(@ModelAttribute  MeetInfo meetInfo) {
+//        meetInfoService.saveOrUpdate(meetInfo);
+//        return new ResultData();
+//    }
 
+    @ApiParam("删除用户预约")
     @GetMapping("/del")
      @ApiImplicitParam(name="id",value="id",dataType="String", paramType = "query",required=true)
     public ResultData delete(String id) {

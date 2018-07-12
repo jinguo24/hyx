@@ -11,11 +11,11 @@ import com.simple.annotation.HoldEnd;
 @Table(name = "user_info")
 public class UserInfo extends BaseModel {
 	private static final long serialVersionUID = 1L;
-	/*用户名**/
-	@io.swagger.annotations.ApiModelProperty(value="用户名",name="username")
+	/*账号**/
+	@io.swagger.annotations.ApiModelProperty(value="账号",name="username")
 	private String username;
-	/*url描述**/
-	@io.swagger.annotations.ApiModelProperty(value="登录名",name="name")
+	/*用户名称**/
+	@io.swagger.annotations.ApiModelProperty(value="用户名称",name="name")
 	private String name;
 	/*密码**/
 	@io.swagger.annotations.ApiModelProperty(value="密码",name="password")

@@ -50,9 +50,17 @@ public class UserInfoController {
     @ApiOperation(value = "添加用户接口", response = String.class)
     @PostMapping("add")
     public ResultData createUser(@RequestBody UserInfo userInfo){
-        Assert.notNull(userInfo.getUsername(), "用户名不能为空");
-        Assert.isTrue(checkUnique(userInfo.getUsername(), UniqueType.INSERT), "重复的用户名");
-        Assert.notNull(userInfo.getPassword(), "密码不能为空");
+//        Assert.notNull(userInfo.getUsername(), "用户名不能为空");
+//        Assert.isTrue(checkUnique(userInfo.getUsername(), UniqueType.INSERT), "重复的用户名");
+//        Assert.notNull(userInfo.getPassword(), "密码不能为空");
+    	if(StringUtils.isBlank(userInfo.getUsername()) || StringUtils.isBlank(userInfo.getName())
+    			|| StringUtils.isBlank(userInfo.getPassword())
+    			) {
+    		return new ResultData(ResultData.ERROR,"账号密码不能为空");
+    	}
+    	if(!checkUnique(userInfo.getUsername(), UniqueType.INSERT)) {
+    		return new ResultData(ResultData.ERROR,"账号重复了");
+    	}
         PasswordHelper passwordHelper = new PasswordHelper();
         passwordHelper.encryptPassword(userInfo);
         userInfoService.saveOrUpdate(userInfo);
@@ -66,38 +74,41 @@ public class UserInfoController {
      * @param status
      * @return
      */
-    @ApiOperation(value = "禁用/启用用户接口", response = String.class)
+    @ApiOperation(value = "禁用/启用用户接口,参数userId ,status 1:启用  0:禁用", response = String.class)
     @PostMapping("updateStatus")
-    @ApiImplicitParams({
-  	  @ApiImplicitParam(name="userId",value="用户id",dataType="String", paramType = "body",required=true),
-  	  @ApiImplicitParam(name="status",value="1:启用  0:禁用",dataType="int", paramType = "body",required=true)})
-    public ResultData modifyStatus(String userId, 
-    		Integer status) {
+//    @ApiImplicitParams({
+//  	  @ApiImplicitParam(name="userId",value="用户id",dataType="String", paramType = "body",required=true),
+//  	  @ApiImplicitParam(name="status",value="1:启用  0:禁用",dataType="int", paramType = "body",required=true)})
+    public ResultData modifyStatus(@RequestBody UserInfo userReq) {
     	UserInfo userInfo = new UserInfo();
-    	userInfo.setId(userId);
-    	userInfo.setStatus(status);
+    	userInfo.setId(userReq.getId());
+    	userInfo.setStatus(userReq.getStatus());
         userInfoService.saveOrUpdate(userInfo);
         return new ResultData(userInfo);
     }
     
     
     @PostMapping("resetPassword")
-    @ApiOperation(value = "重置密码/修改密码", response = String.class)
-    @ApiImplicitParams({
-    	 @ApiImplicitParam(name="userId",value="用户id",dataType="String", paramType = "body",required=true),
-    	    @ApiImplicitParam(name="password",value="密码(重置密码不填)",dataType="String", paramType = "body",required=false)
-    })
-    public ResultData resetPassword(String userId,String password) {
-    	if(StringUtils.isBlank(password)) {
-    		password="123456";
+    @ApiOperation(value = "重置密码/修改密码 参数 id 和password")
+//    @ApiImplicitParams({
+//    	 @ApiImplicitParam(name="userId",value="用户id",dataType="String", paramType = "body",required=true),
+//    	    @ApiImplicitParam(name="password",value="密码(重置密码不填)",dataType="Strintg", paramType = "body",required=false)
+//    })
+    public ResultData resetPassword(@RequestBody UserInfo userInfo ) {
+    	if(StringUtils.isBlank(userInfo.getPassword())) {
+    		
+    		userInfo.setPassword("123456");
     	}
-    	UserInfo user = userInfoService.getById(userId);
-    	user.setPassword(password);
+    	UserInfo user = userInfoService.getById(userInfo.getId());
+    	if(user==null) {
+    		return new ResultData(ResultData.ERROR);
+    	}
+    	user.setPassword(userInfo.getPassword());
     	PasswordHelper passwordHelper = new PasswordHelper();
         passwordHelper.encryptPassword(user);
     	
-        UserInfo userInfo=new UserInfo();
-        userInfo.setId(userId);
+        userInfo=new UserInfo();
+        userInfo.setId(user.getId());
         userInfo.setPassword(user.getPassword());
         userInfoService.saveOrUpdate(userInfo);
     	return new ResultData();

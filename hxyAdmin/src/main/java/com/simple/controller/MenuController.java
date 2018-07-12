@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -60,7 +61,7 @@ public class MenuController extends BaseController
     
     @ApiOperation("添加/修改导航接口【添加一级导航时,parentId 传0  二级导航传一级导航的id】")
     @PostMapping("add")
-    public ResultData add(@ModelAttribute Menu menu) {
+    public ResultData add(@RequestBody Menu menu) {
         //Assert.notNull(menu.getName(), "角色名不能为空");
         //Assert.isTrue(!checkUnique(sysRole.getName(), null), "重复的角色名");
         menuService.saveOrUpdate(menu);

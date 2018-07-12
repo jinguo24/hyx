@@ -41,7 +41,7 @@ logging:
     tk.mybatis: debug
     com.simple.mapper: debug
 fdfs:
-  soTimeout: 30
+  soTimeout: 60
   connectTimeout: 60
   thumbImage:             #缩略图生成参数
     width: 150

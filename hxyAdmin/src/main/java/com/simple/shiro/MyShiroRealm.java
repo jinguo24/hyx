@@ -50,11 +50,14 @@ public class MyShiroRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         //获取用户的输入的账号.
         String username = (String)token.getPrincipal();
-        UserInfo user = userService.getByName(username);
+        UserInfo user = userService.getByUserName(username);
         if(user==null) throw new UnknownAccountException("用户名不存在");
 //        if (0==user.getEnable()) {
 //            throw new LockedAccountException(); // 帐号锁定
 //        }
+        if(user.getStatus()==null || 1!=user.getStatus()) {//用户被禁用
+        	throw new UnknownAccountException("用户被禁用");
+        }
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
                 user, //用户
                 user.getPassword(), //密码
