@@ -46,6 +46,17 @@ public class Area extends BaseModel {
 	/***/
 	@io.swagger.annotations.ApiModelProperty(value="",name="updateBy")
 	private String updateBy;
+	
+//	@Transient
+//	private List<Area> subList;
+	
+	
+//	public List<Area> getSubList() {
+//		return subList;
+//	}
+//	public void setSubList(List<Area> subList) {
+//		this.subList = subList;
+//	}
 	public Integer  getParentID() {
 		return ParentID;
 	}

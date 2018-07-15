@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,8 +15,10 @@ import com.simple.common.rest.ResultData;
 import com.simple.domain.po.DataInfo;
 import com.simple.service.DataInfoService;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
+@Api(description="资料管理接口")
 @RestController
 @RequestMapping("dataInfo")
 public class DataInfoController extends BaseController
@@ -36,7 +39,7 @@ public class DataInfoController extends BaseController
     }
 
     @PostMapping("add")
-    public ResultData add(@ModelAttribute DataInfo dataInfo) {
+    public ResultData add(@RequestBody DataInfo dataInfo) {
         //Assert.notNull(dataInfo.getName(), "角色名不能为空");
         //Assert.isTrue(!checkUnique(sysRole.getName(), null), "重复的角色名");
         dataInfoService.saveOrUpdate(dataInfo);
@@ -44,7 +47,7 @@ public class DataInfoController extends BaseController
     }
 
     @PostMapping("update")
-    public ResultData update(@ModelAttribute  DataInfo dataInfo) {
+    public ResultData update(@RequestBody  DataInfo dataInfo) {
         dataInfoService.saveOrUpdate(dataInfo);
         return new ResultData();
     }
@@ -56,6 +59,10 @@ public class DataInfoController extends BaseController
         return new ResultData(Result.SUCCESS, "删除成功", null);
     }
 	
-	
+    @GetMapping("/findById")
+    @ApiImplicitParam(name="id",value="id",dataType="String", paramType = "query",required=true)
+   public ResultData findById(String id) {
+   	return new ResultData(Result.SUCCESS,"查询成功",dataInfoService.getById(id));
+   }
 	
 }

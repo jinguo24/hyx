@@ -2,19 +2,22 @@ package com.simple.controller;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
 import com.simple.common.rest.Result;
 import com.simple.common.rest.ResultData;
-import com.simple.annotation.HoldBegin;
-import com.simple.annotation.HoldEnd;
 import com.simple.domain.po.MarketingPic;
 import com.simple.service.MarketingPicService;
+
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
-
+@Api("营销图片接口")
 @RestController
 @RequestMapping("marketingPic")
 public class MarketingPicController extends BaseController
@@ -54,7 +57,12 @@ public class MarketingPicController extends BaseController
         marketingPicService.deleteById(id);
         return new ResultData(Result.SUCCESS, "删除成功", null);
     }
-	
+    
+    @GetMapping("/findById")
+    @ApiImplicitParam(name="id",value="id",dataType="String", paramType = "query",required=true)
+   public ResultData findById(String id) {
+   	return new ResultData(Result.SUCCESS,"查询成功",marketingPicService.getById(id));
+   }
 	
 	
 }
