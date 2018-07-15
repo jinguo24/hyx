@@ -1,8 +1,6 @@
 package com.simple.shiro;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
@@ -13,8 +11,6 @@ import org.crazycake.shiro.RedisSessionDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.github.pagehelper.util.StringUtil;
-import com.simple.domain.po.SysPermission;
 import com.simple.service.SysPermissionService;
 
 /**
@@ -38,7 +34,7 @@ public class ShiroService {
         filterChainDefinitionMap.put("/css/**","anon");
         filterChainDefinitionMap.put("/js/**","anon");
         filterChainDefinitionMap.put("/img/**","anon");
-        filterChainDefinitionMap.put("/user/**","anon");
+//        filterChainDefinitionMap.put("/user/**","anon");
         filterChainDefinitionMap.put("/font-awesome/**","anon");
 //        Map<String,Object> map = new HashMap<>();
 //        List<SysPermission> resourcesList = resourcesService.list(map);
@@ -49,8 +45,9 @@ public class ShiroService {
 //                filterChainDefinitionMap.put(resources.getUrl(),permission);
 //            }
 //        }
-//        filterChainDefinitionMap.put("/**", "authc");
-        filterChainDefinitionMap.put("/**", "anon");
+        filterChainDefinitionMap.put("/swagger-ui.html","anon");
+        filterChainDefinitionMap.put("/**", "authc");
+//        filterChainDefinitionMap.put("/**", "anon");
         return filterChainDefinitionMap;
     }
 
