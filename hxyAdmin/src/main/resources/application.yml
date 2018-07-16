@@ -1,6 +1,6 @@
 server:
   port: 9000
-  context-path: /admin
+  context-path: /
 
 spring:
   application:

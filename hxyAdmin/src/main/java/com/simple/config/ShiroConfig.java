@@ -9,6 +9,8 @@ import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.apache.shiro.web.servlet.Cookie;
+import org.apache.shiro.web.servlet.SimpleCookie;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.crazycake.shiro.RedisCacheManager;
 import org.crazycake.shiro.RedisManager;
@@ -132,6 +134,8 @@ public class ShiroConfig {
         myShiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
         return myShiroRealm;
     }
+    
+    
 
     /**
      * 凭证匹配器
@@ -209,7 +213,15 @@ public class ShiroConfig {
     public DefaultWebSessionManager sessionManager() {
         DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
         sessionManager.setSessionDAO(redisSessionDAO());
+        sessionManager.setSessionIdCookie(simpleCookie());
         return sessionManager;
+    }
+    
+    @Bean
+    public SimpleCookie simpleCookie() {
+    	SimpleCookie simpleCookie = new SimpleCookie("REDISSESSION");
+        simpleCookie.setDomain("");
+    	return simpleCookie;
     }
 
 }
