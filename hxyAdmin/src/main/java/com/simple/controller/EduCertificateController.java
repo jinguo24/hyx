@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,10 +15,12 @@ import com.simple.common.rest.ResultData;
 import com.simple.domain.po.EduCertificate;
 import com.simple.service.EduCertificateService;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 @RestController
 @RequestMapping("eduCertificate")
+@Api(description="考试证书接口")
 public class EduCertificateController extends BaseController
 {
 	@Autowired
@@ -36,7 +39,7 @@ public class EduCertificateController extends BaseController
     }
 
     @PostMapping("add")
-    public ResultData add(@ModelAttribute EduCertificate eduCertificate) {
+    public ResultData add(@RequestBody EduCertificate eduCertificate) {
         //Assert.notNull(eduCertificate.getName(), "角色名不能为空");
         //Assert.isTrue(!checkUnique(sysRole.getName(), null), "重复的角色名");
         eduCertificateService.saveOrUpdate(eduCertificate);
@@ -44,7 +47,7 @@ public class EduCertificateController extends BaseController
     }
 
     @PostMapping("update")
-    public ResultData update(@ModelAttribute  EduCertificate eduCertificate) {
+    public ResultData update(@RequestBody  EduCertificate eduCertificate) {
         eduCertificateService.saveOrUpdate(eduCertificate);
         return new ResultData();
     }

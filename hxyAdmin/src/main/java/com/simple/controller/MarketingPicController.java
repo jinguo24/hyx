@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,7 +39,7 @@ public class MarketingPicController extends BaseController
     }
 
     @PostMapping("add")
-    public ResultData add(@ModelAttribute MarketingPic marketingPic) {
+    public ResultData add(@RequestBody MarketingPic marketingPic) {
         //Assert.notNull(marketingPic.getName(), "角色名不能为空");
         //Assert.isTrue(!checkUnique(sysRole.getName(), null), "重复的角色名");
         marketingPicService.saveOrUpdate(marketingPic);
@@ -46,7 +47,7 @@ public class MarketingPicController extends BaseController
     }
 
     @PostMapping("update")
-    public ResultData update(@ModelAttribute  MarketingPic marketingPic) {
+    public ResultData update(@RequestBody  MarketingPic marketingPic) {
         marketingPicService.saveOrUpdate(marketingPic);
         return new ResultData();
     }

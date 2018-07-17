@@ -12,11 +12,14 @@ import com.simple.annotation.HoldBegin;
 import com.simple.annotation.HoldEnd;
 import com.simple.domain.po.EduCertificateType;
 import com.simple.service.EduCertificateTypeService;
+
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 
 @RestController
 @RequestMapping("eduCertificateType")
+@Api(description="考试证书类别接口")
 public class EduCertificateTypeController extends BaseController
 {
 	@Autowired
@@ -35,7 +38,7 @@ public class EduCertificateTypeController extends BaseController
     }
 
     @PostMapping("add")
-    public ResultData add(@ModelAttribute EduCertificateType eduCertificateType) {
+    public ResultData add(@RequestBody EduCertificateType eduCertificateType) {
         //Assert.notNull(eduCertificateType.getName(), "角色名不能为空");
         //Assert.isTrue(!checkUnique(sysRole.getName(), null), "重复的角色名");
         eduCertificateTypeService.saveOrUpdate(eduCertificateType);
@@ -43,7 +46,7 @@ public class EduCertificateTypeController extends BaseController
     }
 
     @PostMapping("update")
-    public ResultData update(@ModelAttribute  EduCertificateType eduCertificateType) {
+    public ResultData update(@RequestBody  EduCertificateType eduCertificateType) {
         eduCertificateTypeService.saveOrUpdate(eduCertificateType);
         return new ResultData();
     }
