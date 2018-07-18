@@ -63,6 +63,7 @@ public class HomeController {
                }
             UserInfo info =(UserInfo) SecurityUtils.getSubject().getSession().getAttribute(UserSession.userInfo);
             info.setPassword("保密");
+           System.out.println("id:"+ SecurityUtils.getSubject().getSession().getId());
            	data.data=info;
         }catch(Exception e) {
         	 return new ResultData(ResultData.ERROR,"用户名或者密码错误");

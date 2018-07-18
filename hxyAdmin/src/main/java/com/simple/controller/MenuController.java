@@ -69,14 +69,11 @@ public class MenuController extends BaseController
     }
 
     @PostMapping("updateStatus")
-    @ApiImplicitParams({
-    	  @ApiImplicitParam(name="id",value="id",dataType="String", paramType = "query",required=true),
-    	  @ApiImplicitParam(name="status",value="0:禁用  1:恢复",dataType="int", paramType = "query",required=true)})
-    public ResultData update(String id,Integer status) {
-    	Menu menu = new Menu();
-    	menu.setId(id);
-    	menu.setStatus(status);
-        menuService.saveOrUpdate(menu);
+    public ResultData update(@RequestBody  Menu menu) {
+    	Menu temp = new Menu();
+    	temp.setId(menu.getId());
+    	temp.setStatus(menu.getStatus());
+        menuService.saveOrUpdate(temp);
         return new ResultData();
     }
     
