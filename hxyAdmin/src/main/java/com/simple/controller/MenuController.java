@@ -69,11 +69,17 @@ public class MenuController extends BaseController
     }
 
     @PostMapping("updateStatus")
-    public ResultData update(@RequestBody  Menu menu) {
+    public ResultData updateStatus(@RequestBody  Menu menu) {
     	Menu temp = new Menu();
     	temp.setId(menu.getId());
     	temp.setStatus(menu.getStatus());
         menuService.saveOrUpdate(temp);
+        return new ResultData();
+    }
+    
+    @PostMapping("update")
+    public ResultData update(@RequestBody  Menu menu) {
+        menuService.saveOrUpdate(menu);
         return new ResultData();
     }
     

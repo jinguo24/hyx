@@ -12,11 +12,14 @@ import com.simple.annotation.HoldBegin;
 import com.simple.annotation.HoldEnd;
 import com.simple.domain.po.Recruit;
 import com.simple.service.RecruitService;
+
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 
 @RestController
 @RequestMapping("recruit")
+@Api(description="招聘接口")
 public class RecruitController extends BaseController
 {
 	@Autowired

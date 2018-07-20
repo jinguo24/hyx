@@ -4,6 +4,8 @@
 	<resultMap id="BaseResultMap" type="com.simple.domain.po.Job">
 		<id column="id" jdbcType="VARCHAR" property="id" />
 		<result column="title" jdbcType="VARCHAR" property="title" />
+		<result column="tags" jdbcType="VARCHAR" property="tags" />
+		<result column="company_name" jdbcType="VARCHAR" property="companyName" />
 		<result column="pic_url" jdbcType="VARCHAR" property="picUrl" />
 		<result column="job_desc" jdbcType="VARCHAR" property="jobDesc" />
 		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
@@ -13,13 +15,15 @@
 	</resultMap>
 	
 	<sql id="allColumns">
-	    `id`,`title`,`pic_url`,`job_desc`,`create_time`,`create_by`,`update_time`,`update_by` 
+	    `id`,`title`,`tags`,`company_name`,`pic_url`,`job_desc`,`create_time`,`create_by`,`update_time`,`update_by` 
 	</sql>
 
 	<sql id="dynamicWhereConditions">
 	        where 1 = 1
 		<if test=" null != id "> and `id` = #{id} </if>    
 		<if test=" null != title "> and `title` = #{title} </if>    
+		<if test=" null != tags "> and `tags` = #{tags} </if>    
+		<if test=" null != companyName "> and `company_name` = #{companyName} </if>    
 		<if test=" null != picUrl "> and `pic_url` = #{picUrl} </if>    
 		<if test=" null != jobDesc "> and `job_desc` = #{jobDesc} </if>    
 		<if test=" null != createTime "> and `create_time` = #{createTime} </if>    

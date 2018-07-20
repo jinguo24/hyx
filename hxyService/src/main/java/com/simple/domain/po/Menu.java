@@ -46,6 +46,10 @@ public class Menu extends BaseModel {
 	/***/
 	@io.swagger.annotations.ApiModelProperty(value="",name="updateBy")
 	private String updateBy;
+	/*链接的url**/
+	@io.swagger.annotations.ApiModelProperty(value="链接的url",name="linkUrl")
+	private String linkUrl;
+	
 	@Transient
 	private List<Menu> subMenus;
 	public List<Menu> getSubMenus() {

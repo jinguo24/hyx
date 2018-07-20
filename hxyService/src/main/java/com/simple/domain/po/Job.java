@@ -14,11 +14,17 @@ public class Job extends BaseModel {
 	/*标题**/
 	@io.swagger.annotations.ApiModelProperty(value="标题",name="title")
 	private String title;
+	/*标签，用逗号隔开**/
+	@io.swagger.annotations.ApiModelProperty(value="标签，用逗号隔开",name="tags")
+	private String tags;
+	/*公司名称**/
+	@io.swagger.annotations.ApiModelProperty(value="公司名称",name="companyName")
+	private String companyName;
 	/*图片url**/
 	@io.swagger.annotations.ApiModelProperty(value="图片url",name="picUrl")
 	private String picUrl;
-	/*描述**/
-	@io.swagger.annotations.ApiModelProperty(value="描述",name="jobDesc")
+	/*职位描述**/
+	@io.swagger.annotations.ApiModelProperty(value="职位描述",name="jobDesc")
 	private String jobDesc;
 	/*[GTE][LTE]**/
 	@io.swagger.annotations.ApiModelProperty(value="[GTE][LTE]",name="createTime")
@@ -45,6 +51,18 @@ public class Job extends BaseModel {
 	}
 	public void setTitle(String _title) {
 		title = _title;
+	}
+	public String  getTags() {
+		return tags;
+	}
+	public void setTags(String _tags) {
+		tags = _tags;
+	}
+	public String  getCompanyName() {
+		return companyName;
+	}
+	public void setCompanyName(String _companyName) {
+		companyName = _companyName;
 	}
 	public String  getPicUrl() {
 		return picUrl;
@@ -113,6 +131,8 @@ public class Job extends BaseModel {
 	{
 		Id_ASC("`id` ASC"),Id_DESC("`id` DESC")
 			,Title_ASC("`title` ASC"),Title_DESC("`title` DESC")
+			,Tags_ASC("`tags` ASC"),Tags_DESC("`tags` DESC")
+			,CompanyName_ASC("`companyName` ASC"),CompanyName_DESC("`companyName` DESC")
 			,PicUrl_ASC("`picUrl` ASC"),PicUrl_DESC("`picUrl` DESC")
 			,JobDesc_ASC("`jobDesc` ASC"),JobDesc_DESC("`jobDesc` DESC")
 			,CreateTime_ASC("`createTime` ASC"),CreateTime_DESC("`createTime` DESC")

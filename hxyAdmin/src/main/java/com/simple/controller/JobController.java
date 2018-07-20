@@ -18,7 +18,6 @@ import com.simple.service.JobService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
-@Api(description="招聘接口")
 @RestController
 @RequestMapping("job")
 public class JobController extends BaseController

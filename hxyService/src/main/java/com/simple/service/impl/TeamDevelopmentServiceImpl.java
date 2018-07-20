@@ -20,7 +20,7 @@ public class TeamDevelopmentServiceImpl implements TeamDevelopmentService {
 
     @Override
     public PageInfo<TeamDevelopment> listAsPage(TeamDevelopment record, Integer pageIndex, Integer pageSize) {
-        return PageHelper.startPage(pageIndex, pageSize).doSelectPageInfo(() -> teamDevelopmentMapper.findList(record));
+        return PageHelper.startPage(pageIndex, pageSize," sort_num desc ").doSelectPageInfo(() -> teamDevelopmentMapper.findList(record));
     }
 
     @Override
