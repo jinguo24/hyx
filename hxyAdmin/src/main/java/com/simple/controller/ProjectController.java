@@ -19,7 +19,7 @@ import io.swagger.annotations.ApiImplicitParams;
 
 @RestController
 @RequestMapping("project")
-@Api("项目查询接口")
+@Api(description="项目查询接口")
 public class ProjectController extends BaseController
 {
 	@Autowired
