@@ -10,58 +10,58 @@ import com.simple.common.rest.Result;
 import com.simple.common.rest.ResultData;
 import com.simple.annotation.HoldBegin;
 import com.simple.annotation.HoldEnd;
-import com.simple.domain.po.MeetInfo;
-import com.simple.service.MeetInfoService;
+import com.simple.domain.po.AreaProject;
+import com.simple.service.AreaProjectService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 
 @RestController
-@RequestMapping("meetInfo")
-@Api(description="申请加盟信息查询")
-public class MeetInfoController extends BaseController
+@RequestMapping("areaProject")
+@Api(description="地区项目管理")
+public class AreaProjectController extends BaseController
 {
 	@Autowired
-    private MeetInfoService meetInfoService;
+    private AreaProjectService areaProjectService;
 
-    private Logger logger = Logger.getLogger(MeetInfoController.class);
+    private Logger logger = Logger.getLogger(AreaProjectController.class);
 
     @GetMapping("list")
         @ApiImplicitParams({
     	  @ApiImplicitParam(name="pageNum",value="页数",dataType="int", paramType = "query",required=true),
     	  @ApiImplicitParam(name="pageSize",value="每页条数",dataType="int", paramType = "query",required=true)})
-    public ResultData list(@ModelAttribute MeetInfo meetInfo,Integer pageNum, Integer pageSize) {
-    	if (null == meetInfo) meetInfo = new MeetInfo();
-        final PageInfo<MeetInfo> page = meetInfoService.listAsPage(meetInfo, pageNum, pageSize);
+    public ResultData list(@ModelAttribute AreaProject areaProject,Integer pageNum, Integer pageSize) {
+    	if (null == areaProject) areaProject = new AreaProject();
+        final PageInfo<AreaProject> page = areaProjectService.listAsPage(areaProject, pageNum, pageSize);
         return new ResultData(page);
     }
 
     @PostMapping("add")
-    public ResultData add(@RequestBody MeetInfo meetInfo) {
-        //Assert.notNull(meetInfo.getName(), "角色名不能为空");
+    public ResultData add(@RequestBody AreaProject areaProject) {
+        //Assert.notNull(areaProject.getName(), "角色名不能为空");
         //Assert.isTrue(!checkUnique(sysRole.getName(), null), "重复的角色名");
-        meetInfoService.saveOrUpdate(meetInfo);
+        areaProjectService.saveOrUpdate(areaProject);
         return new ResultData();
     }
 
     @PostMapping("update")
-    public ResultData update(@RequestBody MeetInfo meetInfo) {
-        meetInfoService.saveOrUpdate(meetInfo);
+    public ResultData update(@RequestBody AreaProject areaProject) {
+        areaProjectService.saveOrUpdate(areaProject);
         return new ResultData();
     }
 
     @GetMapping("/del")
      @ApiImplicitParam(name="id",value="id",dataType="String", paramType = "query",required=true)
     public ResultData delete(String id) {
-        meetInfoService.deleteById(id);
+        areaProjectService.deleteById(id);
         return new ResultData(Result.SUCCESS, "删除成功", null);
     }
     
      @GetMapping("/findById")
      @ApiImplicitParam(name="id",value="id",dataType="String", paramType = "query",required=true)
     public ResultData findById(String id) {
-    	return new ResultData(Result.SUCCESS,"查询成功",meetInfoService.getById(id));
+    	return new ResultData(Result.SUCCESS,"查询成功",areaProjectService.getById(id));
     }
 	
 	

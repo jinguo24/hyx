@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.simple.mapper.MeetInfoMapper">
-	<resultMap id="BaseResultMap" type="com.simple.domain.po.MeetInfo">
+<mapper namespace="com.simple.mapper.ProjectMapper">
+	<resultMap id="BaseResultMap" type="com.simple.domain.po.Project">
 		<id column="id" jdbcType="VARCHAR" property="id" />
 		<result column="name" jdbcType="VARCHAR" property="name" />
-		<result column="phone" jdbcType="VARCHAR" property="phone" />
-		<result column="area_id" jdbcType="VARCHAR" property="areaId" />
-		<result column="area_name" jdbcType="VARCHAR" property="areaName" />
-		<result column="provice_id" jdbcType="VARCHAR" property="proviceId" />
-		<result column="provice_name" jdbcType="VARCHAR" property="proviceName" />
-		<result column="city_id" jdbcType="VARCHAR" property="cityId" />
-		<result column="city_name" jdbcType="VARCHAR" property="cityName" />
-		<result column="project_id" jdbcType="VARCHAR" property="projectId" />
-		<result column="project_name" jdbcType="VARCHAR" property="projectName" />
+		<result column="status" jdbcType="INTEGER" property="status" />
+		<result column="pic" jdbcType="VARCHAR" property="pic" />
 		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
 		<result column="create_by" jdbcType="VARCHAR" property="createBy" />
 		<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
@@ -20,22 +13,15 @@
 	</resultMap>
 	
 	<sql id="allColumns">
-	    `id`,`name`,`phone`,`area_id`,`area_name`,`provice_id`,`provice_name`,`city_id`,`city_name`,`project_id`,`project_name`,`create_time`,`create_by`,`update_time`,`update_by` 
+	    `id`,`name`,`status`,`pic`,`create_time`,`create_by`,`update_time`,`update_by` 
 	</sql>
 
 	<sql id="dynamicWhereConditions">
 	        where 1 = 1
 		<if test=" null != id "> and `id` = #{id} </if>    
 		<if test=" null != name "> and `name` = #{name} </if>    
-		<if test=" null != phone "> and `phone` = #{phone} </if>    
-		<if test=" null != areaId "> and `area_id` = #{areaId} </if>    
-		<if test=" null != areaName "> and `area_name` = #{areaName} </if>    
-		<if test=" null != proviceId "> and `provice_id` = #{proviceId} </if>    
-		<if test=" null != proviceName "> and `provice_name` = #{proviceName} </if>    
-		<if test=" null != cityId "> and `city_id` = #{cityId} </if>    
-		<if test=" null != cityName "> and `city_name` = #{cityName} </if>    
-		<if test=" null != projectId "> and `project_id` = #{projectId} </if>    
-		<if test=" null != projectName "> and `project_name` = #{projectName} </if>    
+		<if test=" null != status "> and `status` = #{status} </if>    
+		<if test=" null != pic "> and `pic` = #{pic} </if>    
 		<if test=" null != createTime "> and `create_time` = #{createTime} </if>    
 		<if test=" null != createTimeGte ">  and `create_time`  >= #{createTimeGte} </if>  
 		<if test=" null != createTimeLte "> and #{createTimeLte}  >=  `create_time` </if>  
@@ -53,8 +39,8 @@
 		<if test=" null != sortColumns"> order by ${sortColumns} </if>
 	</sql>
 	
-	<select id="findList" parameterType="com.simple.domain.po.MeetInfo" resultMap="BaseResultMap">
-		select <include refid="allColumns" /> from meetInfo
+	<select id="findList" parameterType="com.simple.domain.po.Project" resultMap="BaseResultMap">
+		select <include refid="allColumns" /> from project
 		<include refid="dynamicWhereConditions" />
 	</select>
 	

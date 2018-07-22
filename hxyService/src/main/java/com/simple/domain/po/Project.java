@@ -8,39 +8,18 @@ import javax.persistence.Transient;
 import com.simple.annotation.HoldBegin;
 import com.simple.annotation.HoldEnd;
 
-@Table(name = "meetInfo")
-public class MeetInfo extends BaseModel {
+@Table(name = "project")
+public class Project extends BaseModel {
 	private static final long serialVersionUID = 1L;
-	/*预约人姓名**/
-	@io.swagger.annotations.ApiModelProperty(value="预约人姓名",name="name")
-	private String name;
-	/*预约人电话**/
-	@io.swagger.annotations.ApiModelProperty(value="预约人电话",name="phone")
-	private String phone;
-	/*地区id**/
-	@io.swagger.annotations.ApiModelProperty(value="地区id",name="areaId")
-	private String areaId;
-	/*地区名称**/
-	@io.swagger.annotations.ApiModelProperty(value="地区名称",name="areaName")
-	private String areaName;
-	/*省id**/
-	@io.swagger.annotations.ApiModelProperty(value="省id",name="proviceId")
-	private String proviceId;
-	/*省名称**/
-	@io.swagger.annotations.ApiModelProperty(value="省名称",name="proviceName")
-	private String proviceName;
-	/*城市id**/
-	@io.swagger.annotations.ApiModelProperty(value="城市id",name="cityId")
-	private String cityId;
-	/*城市名称**/
-	@io.swagger.annotations.ApiModelProperty(value="城市名称",name="cityName")
-	private String cityName;
-	/*项目id**/
-	@io.swagger.annotations.ApiModelProperty(value="项目id",name="projectId")
-	private String projectId;
 	/*项目名称**/
-	@io.swagger.annotations.ApiModelProperty(value="项目名称",name="projectName")
-	private String projectName;
+	@io.swagger.annotations.ApiModelProperty(value="项目名称",name="name")
+	private String name;
+	/*0：启用 1:禁用**/
+	@io.swagger.annotations.ApiModelProperty(value="0：启用 1:禁用",name="status")
+	private Integer status;
+	/*图标地址**/
+	@io.swagger.annotations.ApiModelProperty(value="图标地址",name="pic")
+	private String pic;
 	/*[GTE][LTE]**/
 	@io.swagger.annotations.ApiModelProperty(value="[GTE][LTE]",name="createTime")
 	private Date createTime;
@@ -67,59 +46,17 @@ public class MeetInfo extends BaseModel {
 	public void setName(String _name) {
 		name = _name;
 	}
-	public String  getPhone() {
-		return phone;
+	public Integer  getStatus() {
+		return status;
 	}
-	public void setPhone(String _phone) {
-		phone = _phone;
+	public void setStatus(Integer _status) {
+		status = _status;
 	}
-	public String  getAreaId() {
-		return areaId;
+	public String  getPic() {
+		return pic;
 	}
-	public void setAreaId(String _areaId) {
-		areaId = _areaId;
-	}
-	public String  getAreaName() {
-		return areaName;
-	}
-	public void setAreaName(String _areaName) {
-		areaName = _areaName;
-	}
-	public String  getProviceId() {
-		return proviceId;
-	}
-	public void setProviceId(String _proviceId) {
-		proviceId = _proviceId;
-	}
-	public String  getProviceName() {
-		return proviceName;
-	}
-	public void setProviceName(String _proviceName) {
-		proviceName = _proviceName;
-	}
-	public String  getCityId() {
-		return cityId;
-	}
-	public void setCityId(String _cityId) {
-		cityId = _cityId;
-	}
-	public String  getCityName() {
-		return cityName;
-	}
-	public void setCityName(String _cityName) {
-		cityName = _cityName;
-	}
-	public String  getProjectId() {
-		return projectId;
-	}
-	public void setProjectId(String _projectId) {
-		projectId = _projectId;
-	}
-	public String  getProjectName() {
-		return projectName;
-	}
-	public void setProjectName(String _projectName) {
-		projectName = _projectName;
+	public void setPic(String _pic) {
+		pic = _pic;
 	}
 	public Date  getCreateTime() {
 		return createTime;
@@ -176,15 +113,8 @@ public class MeetInfo extends BaseModel {
 	{
 		Id_ASC("`id` ASC"),Id_DESC("`id` DESC")
 			,Name_ASC("`name` ASC"),Name_DESC("`name` DESC")
-			,Phone_ASC("`phone` ASC"),Phone_DESC("`phone` DESC")
-			,AreaId_ASC("`areaId` ASC"),AreaId_DESC("`areaId` DESC")
-			,AreaName_ASC("`areaName` ASC"),AreaName_DESC("`areaName` DESC")
-			,ProviceId_ASC("`proviceId` ASC"),ProviceId_DESC("`proviceId` DESC")
-			,ProviceName_ASC("`proviceName` ASC"),ProviceName_DESC("`proviceName` DESC")
-			,CityId_ASC("`cityId` ASC"),CityId_DESC("`cityId` DESC")
-			,CityName_ASC("`cityName` ASC"),CityName_DESC("`cityName` DESC")
-			,ProjectId_ASC("`projectId` ASC"),ProjectId_DESC("`projectId` DESC")
-			,ProjectName_ASC("`projectName` ASC"),ProjectName_DESC("`projectName` DESC")
+			,Status_ASC("`status` ASC"),Status_DESC("`status` DESC")
+			,Pic_ASC("`pic` ASC"),Pic_DESC("`pic` DESC")
 			,CreateTime_ASC("`createTime` ASC"),CreateTime_DESC("`createTime` DESC")
 			,CreateBy_ASC("`createBy` ASC"),CreateBy_DESC("`createBy` DESC")
 			,UpdateTime_ASC("`updateTime` ASC"),UpdateTime_DESC("`updateTime` DESC")
@@ -206,7 +136,7 @@ public class MeetInfo extends BaseModel {
 		}
 	}
 	
-	public void setSortColumns(MeetInfo.Field... fields)
+	public void setSortColumns(Project.Field... fields)
 	{
 		if (fields == null || fields.length == 0) {
 			return;

@@ -18,7 +18,7 @@ import com.simple.service.InstService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
-@Api(description="组织机构接口")
+//@Api(description="组织机构接口")
 @RestController
 @RequestMapping("inst")
 public class InstController extends BaseController
