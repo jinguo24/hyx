@@ -20,7 +20,7 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public PageInfo<Question> listAsPage(Question record, Integer pageIndex, Integer pageSize) {
-        return PageHelper.startPage(pageIndex, pageSize).doSelectPageInfo(() -> questionMapper.findList(record));
+        return PageHelper.startPage(pageIndex, pageSize,"query_count desc ,sort_num desc").doSelectPageInfo(() -> questionMapper.findList(record));
     }
 
     @Override
