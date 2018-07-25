@@ -8,24 +8,15 @@ import javax.persistence.Transient;
 import com.simple.annotation.HoldBegin;
 import com.simple.annotation.HoldEnd;
 
-@Table(name = "menu")
-public class Menu extends BaseModel {
+@Table(name = "joinApply")
+public class JoinApply extends BaseModel {
 	private static final long serialVersionUID = 1L;
-	/*名称**/
-	@io.swagger.annotations.ApiModelProperty(value="名称",name="name")
-	private String name;
-	/*排序**/
-	@io.swagger.annotations.ApiModelProperty(value="排序",name="sortNum")
-	private Integer sortNum;
-	/*0 失效 1有效**/
-	@io.swagger.annotations.ApiModelProperty(value="0 失效 1有效",name="status")
-	private Integer status;
-	/*是否跳转新页面  0:不跳转  1.跳转**/
-	@io.swagger.annotations.ApiModelProperty(value="是否跳转新页面  0:不跳转  1.跳转",name="isBlank")
-	private Integer isBlank;
-	/*父id**/
-	@io.swagger.annotations.ApiModelProperty(value="父id",name="parentId")
-	private String parentId;
+	/*文件名**/
+	@io.swagger.annotations.ApiModelProperty(value="文件名",name="fileName")
+	private String fileName;
+	/*文件路径**/
+	@io.swagger.annotations.ApiModelProperty(value="文件路径",name="filePath")
+	private String filePath;
 	/*[GTE][LTE]**/
 	@io.swagger.annotations.ApiModelProperty(value="[GTE][LTE]",name="createTime")
 	private Date createTime;
@@ -46,51 +37,17 @@ public class Menu extends BaseModel {
 	/***/
 	@io.swagger.annotations.ApiModelProperty(value="",name="updateBy")
 	private String updateBy;
-	/*链接的url**/
-	@io.swagger.annotations.ApiModelProperty(value="链接的url",name="linkUrl")
-	private String linkUrl;
-	/***/
-	@io.swagger.annotations.ApiModelProperty(value="banner图地址",name="bannerUrl")
-	private String bannerUrl;
-	
-	@Transient
-	private List<Menu> subMenus;
-	public List<Menu> getSubMenus() {
-		return subMenus;
+	public String  getFileName() {
+		return fileName;
 	}
-	public void setSubMenus(List<Menu> subMenus) {
-		this.subMenus = subMenus;
+	public void setFileName(String _fileName) {
+		fileName = _fileName;
 	}
-	
-	public String  getName() {
-		return name;
+	public String  getFilePath() {
+		return filePath;
 	}
-	public void setName(String _name) {
-		name = _name;
-	}
-	public Integer  getSortNum() {
-		return sortNum;
-	}
-	public void setSortNum(Integer _sortNum) {
-		sortNum = _sortNum;
-	}
-	public Integer  getStatus() {
-		return status;
-	}
-	public void setStatus(Integer _status) {
-		status = _status;
-	}
-	public Integer  getIsBlank() {
-		return isBlank;
-	}
-	public void setIsBlank(Integer _isBlank) {
-		isBlank = _isBlank;
-	}
-	public String  getParentId() {
-		return parentId;
-	}
-	public void setParentId(String _parentId) {
-		parentId = _parentId;
+	public void setFilePath(String _filePath) {
+		filePath = _filePath;
 	}
 	public Date  getCreateTime() {
 		return createTime;
@@ -140,35 +97,18 @@ public class Menu extends BaseModel {
 	public void setUpdateBy(String _updateBy) {
 		updateBy = _updateBy;
 	}
-	public String  getLinkUrl() {
-		return linkUrl;
-	}
-	public void setLinkUrl(String _linkUrl) {
-		linkUrl = _linkUrl;
-	}
-	public String  getBannerUrl() {
-		return bannerUrl;
-	}
-	public void setBannerUrl(String _bannerUrl) {
-		bannerUrl = _bannerUrl;
-	}
 
 
 
 	public static enum Field
 	{
 		Id_ASC("`id` ASC"),Id_DESC("`id` DESC")
-			,Name_ASC("`name` ASC"),Name_DESC("`name` DESC")
-			,SortNum_ASC("`sortNum` ASC"),SortNum_DESC("`sortNum` DESC")
-			,Status_ASC("`status` ASC"),Status_DESC("`status` DESC")
-			,IsBlank_ASC("`isBlank` ASC"),IsBlank_DESC("`isBlank` DESC")
-			,ParentId_ASC("`parentId` ASC"),ParentId_DESC("`parentId` DESC")
+			,FileName_ASC("`fileName` ASC"),FileName_DESC("`fileName` DESC")
+			,FilePath_ASC("`filePath` ASC"),FilePath_DESC("`filePath` DESC")
 			,CreateTime_ASC("`createTime` ASC"),CreateTime_DESC("`createTime` DESC")
 			,CreateBy_ASC("`createBy` ASC"),CreateBy_DESC("`createBy` DESC")
 			,UpdateTime_ASC("`updateTime` ASC"),UpdateTime_DESC("`updateTime` DESC")
 			,UpdateBy_ASC("`updateBy` ASC"),UpdateBy_DESC("`updateBy` DESC")
-			,LinkUrl_ASC("`linkUrl` ASC"),LinkUrl_DESC("`linkUrl` DESC")
-			,BannerUrl_ASC("`bannerUrl` ASC"),BannerUrl_DESC("`bannerUrl` DESC")
 	;
 		private String value;
 		Field(String value){
@@ -186,7 +126,7 @@ public class Menu extends BaseModel {
 		}
 	}
 	
-	public void setSortColumns(Menu.Field... fields)
+	public void setSortColumns(JoinApply.Field... fields)
 	{
 		if (fields == null || fields.length == 0) {
 			return;

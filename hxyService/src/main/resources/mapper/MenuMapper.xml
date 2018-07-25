@@ -13,10 +13,11 @@
 		<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
 		<result column="update_by" jdbcType="VARCHAR" property="updateBy" />
 		<result column="link_url" jdbcType="VARCHAR" property="linkUrl" />
+		<result column="banner_url" jdbcType="VARCHAR" property="bannerUrl" />
 	</resultMap>
 	
 	<sql id="allColumns">
-	    `id`,`name`,`sort_num`,`status`,`is_blank`,`parent_id`,`create_time`,`create_by`,`update_time`,`update_by`,`link_url` 
+	    `id`,`name`,`sort_num`,`status`,`is_blank`,`parent_id`,`create_time`,`create_by`,`update_time`,`update_by`,`link_url`,`banner_url` 
 	</sql>
 
 	<sql id="dynamicWhereConditions">
@@ -36,6 +37,7 @@
 		<if test=" null != updateTimeLte "> and #{updateTimeLte}  >=  `update_time` </if>  
 		<if test=" null != updateBy "> and `update_by` = #{updateBy} </if>    
 		<if test=" null != linkUrl "> and `link_url` = #{linkUrl} </if>    
+		<if test=" null != bannerUrl "> and `banner_url` = #{bannerUrl} </if>    
 		<if test=" null != ids ">
 		 	and id in  
 			<foreach collection="ids" index="index" item="idItem" open="(" separator="," close=")">
