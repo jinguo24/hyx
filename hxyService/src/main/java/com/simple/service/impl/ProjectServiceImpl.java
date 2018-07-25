@@ -20,8 +20,7 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public PageInfo<Project> listAsPage(Project record, Integer pageIndex, Integer pageSize) {
-    	record.setStatus(0);
-        return PageHelper.startPage(pageIndex, pageSize).doSelectPageInfo(() -> projectMapper.findList(record));
+        return PageHelper.startPage(pageIndex, pageSize,"sort_num desc ").doSelectPageInfo(() -> projectMapper.findList(record));
     }
 
     @Override

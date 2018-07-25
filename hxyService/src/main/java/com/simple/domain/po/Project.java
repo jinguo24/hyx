@@ -14,11 +14,8 @@ public class Project extends BaseModel {
 	/*项目名称**/
 	@io.swagger.annotations.ApiModelProperty(value="项目名称",name="name")
 	private String name;
-	/*0：启用 1:禁用**/
-	@io.swagger.annotations.ApiModelProperty(value="0：启用 1:禁用",name="status")
-	private Integer status;
-	/*图标地址**/
-	@io.swagger.annotations.ApiModelProperty(value="图标地址",name="pic")
+	/*图片地址**/
+	@io.swagger.annotations.ApiModelProperty(value="图片地址",name="pic")
 	private String pic;
 	/*[GTE][LTE]**/
 	@io.swagger.annotations.ApiModelProperty(value="[GTE][LTE]",name="createTime")
@@ -40,17 +37,20 @@ public class Project extends BaseModel {
 	/***/
 	@io.swagger.annotations.ApiModelProperty(value="",name="updateBy")
 	private String updateBy;
+	/*项目描述**/
+	@io.swagger.annotations.ApiModelProperty(value="项目描述",name="description")
+	private String description;
+	/*查看更多的链接**/
+	@io.swagger.annotations.ApiModelProperty(value="查看更多的链接",name="moreLink")
+	private String moreLink;
+	/*排序**/
+	@io.swagger.annotations.ApiModelProperty(value="排序",name="sortNum")
+	private Integer sortNum;
 	public String  getName() {
 		return name;
 	}
 	public void setName(String _name) {
 		name = _name;
-	}
-	public Integer  getStatus() {
-		return status;
-	}
-	public void setStatus(Integer _status) {
-		status = _status;
 	}
 	public String  getPic() {
 		return pic;
@@ -106,6 +106,24 @@ public class Project extends BaseModel {
 	public void setUpdateBy(String _updateBy) {
 		updateBy = _updateBy;
 	}
+	public String  getDescription() {
+		return description;
+	}
+	public void setDescription(String _description) {
+		description = _description;
+	}
+	public String  getMoreLink() {
+		return moreLink;
+	}
+	public void setMoreLink(String _moreLink) {
+		moreLink = _moreLink;
+	}
+	public Integer  getSortNum() {
+		return sortNum;
+	}
+	public void setSortNum(Integer _sortNum) {
+		sortNum = _sortNum;
+	}
 
 
 
@@ -113,12 +131,14 @@ public class Project extends BaseModel {
 	{
 		Id_ASC("`id` ASC"),Id_DESC("`id` DESC")
 			,Name_ASC("`name` ASC"),Name_DESC("`name` DESC")
-			,Status_ASC("`status` ASC"),Status_DESC("`status` DESC")
 			,Pic_ASC("`pic` ASC"),Pic_DESC("`pic` DESC")
 			,CreateTime_ASC("`createTime` ASC"),CreateTime_DESC("`createTime` DESC")
 			,CreateBy_ASC("`createBy` ASC"),CreateBy_DESC("`createBy` DESC")
 			,UpdateTime_ASC("`updateTime` ASC"),UpdateTime_DESC("`updateTime` DESC")
 			,UpdateBy_ASC("`updateBy` ASC"),UpdateBy_DESC("`updateBy` DESC")
+			,Description_ASC("`description` ASC"),Description_DESC("`description` DESC")
+			,MoreLink_ASC("`moreLink` ASC"),MoreLink_DESC("`moreLink` DESC")
+			,SortNum_ASC("`sortNum` ASC"),SortNum_DESC("`sortNum` DESC")
 	;
 		private String value;
 		Field(String value){
