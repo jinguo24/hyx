@@ -29,12 +29,14 @@ public class NewsController extends BaseController
     @GetMapping("list")
         @ApiImplicitParams({
     	  @ApiImplicitParam(name="type",value="类别 0：新闻 1.战略伙伴",dataType="int", paramType = "query",required=true),
+    	  @ApiImplicitParam(name="pageNum",value="页数",dataType="int", paramType = "query",required=false),
     	  @ApiImplicitParam(name="pageSize",value="每页条数",dataType="int", paramType = "query",required=false)})
-    public ResultData list(Integer type, Integer pageSize) {
+    public ResultData list(Integer type,Integer pageNum, Integer pageSize) {
     	News news = new News();
     	news.setType(type);
     	pageSize = pageSize==null?5:pageSize;
-        final PageInfo<News> page = newsService.listAsPage(news, 1, pageSize);
+    	pageNum= pageNum==null?1:pageNum;
+        final PageInfo<News> page = newsService.listAsPage(news, pageNum, pageSize);
         return new ResultData(page);
     }
 //
