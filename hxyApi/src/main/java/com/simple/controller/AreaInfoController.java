@@ -35,7 +35,7 @@ public class AreaInfoController extends BaseController
     }
 
     @PostMapping("add")
-    public ResultData add(@ModelAttribute AreaInfo areaInfo) {
+    public ResultData add(@RequestBody AreaInfo areaInfo) {
         //Assert.notNull(areaInfo.getName(), "角色名不能为空");
         //Assert.isTrue(!checkUnique(sysRole.getName(), null), "重复的角色名");
         areaInfoService.saveOrUpdate(areaInfo);
@@ -43,7 +43,7 @@ public class AreaInfoController extends BaseController
     }
 
     @PostMapping("update")
-    public ResultData update(@ModelAttribute  AreaInfo areaInfo) {
+    public ResultData update(@RequestBody AreaInfo areaInfo) {
         areaInfoService.saveOrUpdate(areaInfo);
         return new ResultData();
     }
@@ -53,6 +53,12 @@ public class AreaInfoController extends BaseController
     public ResultData delete(String id) {
         areaInfoService.deleteById(id);
         return new ResultData(Result.SUCCESS, "删除成功", null);
+    }
+    
+     @GetMapping("/findById")
+     @ApiImplicitParam(name="id",value="id",dataType="String", paramType = "query",required=true)
+    public ResultData findById(String id) {
+    	return new ResultData(Result.SUCCESS,"查询成功",areaInfoService.getById(id));
     }
 	
 	

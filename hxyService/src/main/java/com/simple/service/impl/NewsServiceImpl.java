@@ -20,7 +20,7 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public PageInfo<News> listAsPage(News record, Integer pageIndex, Integer pageSize) {
-        return PageHelper.startPage(pageIndex, pageSize).doSelectPageInfo(() -> newsMapper.findList(record));
+        return PageHelper.startPage(pageIndex, pageSize,"query_count desc ").doSelectPageInfo(() -> newsMapper.findList(record));
     }
 
     @Override

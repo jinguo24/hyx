@@ -2,26 +2,21 @@ package com.simple.controller;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.util.Assert;
+import org.springframework.web.bind.annotation.*;
 
 import com.github.pagehelper.PageInfo;
 import com.simple.common.rest.Result;
 import com.simple.common.rest.ResultData;
+import com.simple.annotation.HoldBegin;
+import com.simple.annotation.HoldEnd;
 import com.simple.domain.po.Suggestion;
 import com.simple.service.SuggestionService;
-
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("suggestion")
-@Api(description="投诉建议相关接口")
 public class SuggestionController extends BaseController
 {
 	@Autowired
@@ -40,8 +35,7 @@ public class SuggestionController extends BaseController
     }
 
     @PostMapping("add")
-    @ApiOperation("新增投诉建议接口")
-    public ResultData add(@ModelAttribute Suggestion suggestion) {
+    public ResultData add(@RequestBody Suggestion suggestion) {
         //Assert.notNull(suggestion.getName(), "角色名不能为空");
         //Assert.isTrue(!checkUnique(sysRole.getName(), null), "重复的角色名");
         suggestionService.saveOrUpdate(suggestion);
@@ -49,7 +43,7 @@ public class SuggestionController extends BaseController
     }
 
     @PostMapping("update")
-    public ResultData update(@ModelAttribute  Suggestion suggestion) {
+    public ResultData update(@RequestBody Suggestion suggestion) {
         suggestionService.saveOrUpdate(suggestion);
         return new ResultData();
     }
@@ -59,6 +53,12 @@ public class SuggestionController extends BaseController
     public ResultData delete(String id) {
         suggestionService.deleteById(id);
         return new ResultData(Result.SUCCESS, "删除成功", null);
+    }
+    
+     @GetMapping("/findById")
+     @ApiImplicitParam(name="id",value="id",dataType="String", paramType = "query",required=true)
+    public ResultData findById(String id) {
+    	return new ResultData(Result.SUCCESS,"查询成功",suggestionService.getById(id));
     }
 	
 	

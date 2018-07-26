@@ -10,55 +10,55 @@ import com.simple.common.rest.Result;
 import com.simple.common.rest.ResultData;
 import com.simple.annotation.HoldBegin;
 import com.simple.annotation.HoldEnd;
-import com.simple.domain.po.Area;
-import com.simple.service.AreaService;
+import com.simple.domain.po.Project;
+import com.simple.service.ProjectService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 
 @RestController
-@RequestMapping("area")
-public class AreaController extends BaseController
+@RequestMapping("project")
+public class ProjectController extends BaseController
 {
 	@Autowired
-    private AreaService areaService;
+    private ProjectService projectService;
 
-    private Logger logger = Logger.getLogger(AreaController.class);
+    private Logger logger = Logger.getLogger(ProjectController.class);
 
     @GetMapping("list")
         @ApiImplicitParams({
     	  @ApiImplicitParam(name="pageNum",value="页数",dataType="int", paramType = "query",required=true),
     	  @ApiImplicitParam(name="pageSize",value="每页条数",dataType="int", paramType = "query",required=true)})
-    public ResultData list(@ModelAttribute Area area,Integer pageNum, Integer pageSize) {
-    	if (null == area) area = new Area();
-        final PageInfo<Area> page = areaService.listAsPage(area, pageNum, pageSize);
+    public ResultData list(@ModelAttribute Project project,Integer pageNum, Integer pageSize) {
+    	if (null == project) project = new Project();
+        final PageInfo<Project> page = projectService.listAsPage(project, pageNum, pageSize);
         return new ResultData(page);
     }
 
     @PostMapping("add")
-    public ResultData add(@RequestBody Area area) {
-        //Assert.notNull(area.getName(), "角色名不能为空");
+    public ResultData add(@RequestBody Project project) {
+        //Assert.notNull(project.getName(), "角色名不能为空");
         //Assert.isTrue(!checkUnique(sysRole.getName(), null), "重复的角色名");
-        areaService.saveOrUpdate(area);
+        projectService.saveOrUpdate(project);
         return new ResultData();
     }
 
     @PostMapping("update")
-    public ResultData update(@RequestBody Area area) {
-        areaService.saveOrUpdate(area);
+    public ResultData update(@RequestBody Project project) {
+        projectService.saveOrUpdate(project);
         return new ResultData();
     }
 
     @GetMapping("/del")
      @ApiImplicitParam(name="id",value="id",dataType="String", paramType = "query",required=true)
     public ResultData delete(String id) {
-        areaService.deleteById(id);
+        projectService.deleteById(id);
         return new ResultData(Result.SUCCESS, "删除成功", null);
     }
     
      @GetMapping("/findById")
      @ApiImplicitParam(name="id",value="id",dataType="String", paramType = "query",required=true)
     public ResultData findById(String id) {
-    	return new ResultData(Result.SUCCESS,"查询成功",areaService.getById(id));
+    	return new ResultData(Result.SUCCESS,"查询成功",projectService.getById(id));
     }
 	
 	

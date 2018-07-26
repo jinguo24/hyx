@@ -35,7 +35,7 @@ public class NoticeController extends BaseController
     }
 
     @PostMapping("add")
-    public ResultData add(@ModelAttribute Notice notice) {
+    public ResultData add(@RequestBody Notice notice) {
         //Assert.notNull(notice.getName(), "角色名不能为空");
         //Assert.isTrue(!checkUnique(sysRole.getName(), null), "重复的角色名");
         noticeService.saveOrUpdate(notice);
@@ -43,7 +43,7 @@ public class NoticeController extends BaseController
     }
 
     @PostMapping("update")
-    public ResultData update(@ModelAttribute  Notice notice) {
+    public ResultData update(@RequestBody Notice notice) {
         noticeService.saveOrUpdate(notice);
         return new ResultData();
     }
@@ -53,6 +53,12 @@ public class NoticeController extends BaseController
     public ResultData delete(String id) {
         noticeService.deleteById(id);
         return new ResultData(Result.SUCCESS, "删除成功", null);
+    }
+    
+     @GetMapping("/findById")
+     @ApiImplicitParam(name="id",value="id",dataType="String", paramType = "query",required=true)
+    public ResultData findById(String id) {
+    	return new ResultData(Result.SUCCESS,"查询成功",noticeService.getById(id));
     }
 	
 	

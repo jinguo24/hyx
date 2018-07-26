@@ -35,7 +35,7 @@ public class EduCertificateController extends BaseController
     }
 
     @PostMapping("add")
-    public ResultData add(@ModelAttribute EduCertificate eduCertificate) {
+    public ResultData add(@RequestBody EduCertificate eduCertificate) {
         //Assert.notNull(eduCertificate.getName(), "角色名不能为空");
         //Assert.isTrue(!checkUnique(sysRole.getName(), null), "重复的角色名");
         eduCertificateService.saveOrUpdate(eduCertificate);
@@ -43,7 +43,7 @@ public class EduCertificateController extends BaseController
     }
 
     @PostMapping("update")
-    public ResultData update(@ModelAttribute  EduCertificate eduCertificate) {
+    public ResultData update(@RequestBody EduCertificate eduCertificate) {
         eduCertificateService.saveOrUpdate(eduCertificate);
         return new ResultData();
     }
@@ -53,6 +53,12 @@ public class EduCertificateController extends BaseController
     public ResultData delete(String id) {
         eduCertificateService.deleteById(id);
         return new ResultData(Result.SUCCESS, "删除成功", null);
+    }
+    
+     @GetMapping("/findById")
+     @ApiImplicitParam(name="id",value="id",dataType="String", paramType = "query",required=true)
+    public ResultData findById(String id) {
+    	return new ResultData(Result.SUCCESS,"查询成功",eduCertificateService.getById(id));
     }
 	
 	

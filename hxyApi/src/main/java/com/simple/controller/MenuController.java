@@ -2,35 +2,38 @@ package com.simple.controller;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.util.Assert;
+import org.springframework.web.bind.annotation.*;
 
 import com.github.pagehelper.PageInfo;
+import com.simple.common.rest.Result;
 import com.simple.common.rest.ResultData;
+import com.simple.annotation.HoldBegin;
+import com.simple.annotation.HoldEnd;
 import com.simple.domain.po.Menu;
 import com.simple.service.MenuService;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("menu")
-@Api(description="导航查询接口")
+@Api(description="导航接口")
 public class MenuController extends BaseController
 {
 	@Autowired
     private MenuService menuService;
 
     private Logger logger = Logger.getLogger(MenuController.class);
-
+    
     @ApiOperation("查询导航列表")
     @GetMapping("findAllList")
     public  ResultData findAllList() {
     int pageSize=1000;int pageNum=1;
     Menu menu = new Menu();
     menu.setParentId("0");
-    menu.setStatus(1);
     final PageInfo<Menu> page = menuService.listAsPage(menu, pageNum, pageSize);//查一级导航
     for(Menu m:page.getList()) {
     	 menu = new Menu();
@@ -40,9 +43,7 @@ public class MenuController extends BaseController
     }
     return new ResultData(page);	
     }
-    
-    
-    
+
 //    @GetMapping("list")
 //        @ApiImplicitParams({
 //    	  @ApiImplicitParam(name="pageNum",value="页数",dataType="int", paramType = "query",required=true),
@@ -54,24 +55,30 @@ public class MenuController extends BaseController
 //    }
 
 //    @PostMapping("add")
-//    public ResultData add(@ModelAttribute Menu menu) {
+//    public ResultData add(@RequestBody Menu menu) {
 //        //Assert.notNull(menu.getName(), "角色名不能为空");
 //        //Assert.isTrue(!checkUnique(sysRole.getName(), null), "重复的角色名");
 //        menuService.saveOrUpdate(menu);
 //        return new ResultData();
 //    }
-//
+
 //    @PostMapping("update")
-//    public ResultData update(@ModelAttribute  Menu menu) {
+//    public ResultData update(@RequestBody Menu menu) {
 //        menuService.saveOrUpdate(menu);
 //        return new ResultData();
 //    }
-//
+
 //    @GetMapping("/del")
 //     @ApiImplicitParam(name="id",value="id",dataType="String", paramType = "query",required=true)
 //    public ResultData delete(String id) {
 //        menuService.deleteById(id);
 //        return new ResultData(Result.SUCCESS, "删除成功", null);
+//    }
+//    
+//     @GetMapping("/findById")
+//     @ApiImplicitParam(name="id",value="id",dataType="String", paramType = "query",required=true)
+//    public ResultData findById(String id) {
+//    	return new ResultData(Result.SUCCESS,"查询成功",menuService.getById(id));
 //    }
 	
 	

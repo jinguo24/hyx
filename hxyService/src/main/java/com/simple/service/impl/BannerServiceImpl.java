@@ -20,7 +20,7 @@ public class BannerServiceImpl implements BannerService {
 
     @Override
     public PageInfo<Banner> listAsPage(Banner record, Integer pageIndex, Integer pageSize) {
-        return PageHelper.startPage(pageIndex, pageSize).doSelectPageInfo(() -> bannerMapper.findList(record));
+        return PageHelper.startPage(pageIndex, pageSize,"sort_num desc ").doSelectPageInfo(() -> bannerMapper.findList(record));
     }
 
     @Override
