@@ -20,8 +20,8 @@
 	<sql id="dynamicWhereConditions">
 	        where 1 = 1
 		<if test=" null != id "> and `id` = #{id} </if>    
-		<if test=" null != question "> and `question` = #{question} </if>    
-		<if test=" null != answer "> and `answer` = #{answer} </if>    
+		<if test=" null != question "> and `question` LIKE '%${question}%' </if>    
+		<if test=" null != answer "> and `answer` LIKE '%${answer}%' </if>    
 		<if test=" null != sortNum "> and `sort_num` = #{sortNum} </if>    
 		<if test=" null != queryCount "> and `query_count` = #{queryCount} </if>    
 		<if test=" null != createTime "> and `create_time` = #{createTime} </if>    

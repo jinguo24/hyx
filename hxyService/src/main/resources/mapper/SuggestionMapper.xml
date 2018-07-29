@@ -18,7 +18,7 @@
 	<sql id="dynamicWhereConditions">
 	        where 1 = 1
 		<if test=" null != id "> and `id` = #{id} </if>    
-		<if test=" null != description "> and `description` = #{description} </if>    
+		<if test=" null != description "> and `description` LIKE '%${description}%' </if>    
 		<if test=" null != startLevel "> and `start_level` = #{startLevel} </if>    
 		<if test=" null != createTime "> and `create_time` = #{createTime} </if>    
 		<if test=" null != createTimeGte ">  and `create_time`  >= #{createTimeGte} </if>  

@@ -2,21 +2,24 @@ package com.simple.controller;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
 import com.simple.common.rest.Result;
 import com.simple.common.rest.ResultData;
-import com.simple.annotation.HoldBegin;
-import com.simple.annotation.HoldEnd;
 import com.simple.domain.po.Question;
 import com.simple.service.QuestionService;
+
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 
 @RestController
 @RequestMapping("question")
+@Api(description="常见问答接口")
 public class QuestionController extends BaseController
 {
 	@Autowired
@@ -34,27 +37,27 @@ public class QuestionController extends BaseController
         return new ResultData(page);
     }
 
-    @PostMapping("add")
-    public ResultData add(@RequestBody Question question) {
-        //Assert.notNull(question.getName(), "角色名不能为空");
-        //Assert.isTrue(!checkUnique(sysRole.getName(), null), "重复的角色名");
-        questionService.saveOrUpdate(question);
-        return new ResultData();
-    }
-
-    @PostMapping("update")
-    public ResultData update(@RequestBody Question question) {
-        questionService.saveOrUpdate(question);
-        return new ResultData();
-    }
-
-    @GetMapping("/del")
-     @ApiImplicitParam(name="id",value="id",dataType="String", paramType = "query",required=true)
-    public ResultData delete(String id) {
-        questionService.deleteById(id);
-        return new ResultData(Result.SUCCESS, "删除成功", null);
-    }
-    
+//    @PostMapping("add")
+//    public ResultData add(@RequestBody Question question) {
+//        //Assert.notNull(question.getName(), "角色名不能为空");
+//        //Assert.isTrue(!checkUnique(sysRole.getName(), null), "重复的角色名");
+//        questionService.saveOrUpdate(question);
+//        return new ResultData();
+//    }
+//
+//    @PostMapping("update")
+//    public ResultData update(@RequestBody Question question) {
+//        questionService.saveOrUpdate(question);
+//        return new ResultData();
+//    }
+//
+//    @GetMapping("/del")
+//     @ApiImplicitParam(name="id",value="id",dataType="String", paramType = "query",required=true)
+//    public ResultData delete(String id) {
+//        questionService.deleteById(id);
+//        return new ResultData(Result.SUCCESS, "删除成功", null);
+//    }
+//    
      @GetMapping("/findById")
      @ApiImplicitParam(name="id",value="id",dataType="String", paramType = "query",required=true)
     public ResultData findById(String id) {

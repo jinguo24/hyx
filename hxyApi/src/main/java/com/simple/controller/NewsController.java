@@ -15,6 +15,7 @@ import com.simple.service.NewsService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("news")
@@ -26,6 +27,7 @@ public class NewsController extends BaseController
 
     private Logger logger = Logger.getLogger(NewsController.class);
 
+    @ApiOperation("按浏览数排序的列表")
     @GetMapping("list")
         @ApiImplicitParams({
     	  @ApiImplicitParam(name="type",value="类别 0：新闻 1.战略伙伴",dataType="int", paramType = "query",required=true),
@@ -39,6 +41,22 @@ public class NewsController extends BaseController
         final PageInfo<News> page = newsService.listAsPage(news, pageNum, pageSize);
         return new ResultData(page);
     }
+    
+    @ApiOperation("按发布日期排序的列表")
+    @GetMapping("newestList")
+    @ApiImplicitParams({
+	  @ApiImplicitParam(name="type",value="类别 0：新闻 1.战略伙伴",dataType="int", paramType = "query",required=true),
+	  @ApiImplicitParam(name="pageNum",value="页数",dataType="int", paramType = "query",required=false),
+	  @ApiImplicitParam(name="pageSize",value="每页条数",dataType="int", paramType = "query",required=false)})
+    public ResultData newestList(Integer type,Integer pageNum, Integer pageSize) {
+		News news = new News();
+		news.setType(type);
+		pageSize = pageSize==null?5:pageSize;
+		pageNum= pageNum==null?1:pageNum;
+	    final PageInfo<News> page = newsService.newestList(news, pageNum, pageSize);
+    return new ResultData(page);
+}
+    
 //
 //    @PostMapping("add")
 //    public ResultData add(@RequestBody News news) {
@@ -64,7 +82,12 @@ public class NewsController extends BaseController
      @GetMapping("/findById")
      @ApiImplicitParam(name="id",value="id",dataType="String", paramType = "query",required=true)
     public ResultData findById(String id) {
-    	return new ResultData(Result.SUCCESS,"查询成功",newsService.getById(id));
+    	 News news = newsService.getById(id);
+    	 News temp =new News();
+    	 temp.setId(news.getId());
+    	 temp.setQueryCount(news.getQueryCount()+1);
+    	 newsService.saveOrUpdate(temp); 
+    	return new ResultData(Result.SUCCESS,"查询成功",news);
     }
 //	
 //	

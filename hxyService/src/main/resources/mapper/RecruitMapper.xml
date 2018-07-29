@@ -23,7 +23,7 @@
 	<sql id="dynamicWhereConditions">
 	        where 1 = 1
 		<if test=" null != id "> and `id` = #{id} </if>    
-		<if test=" null != name "> and `name` = #{name} </if>    
+		<if test=" null != name "> and `name` LIKE '%${name}%' </if>    
 		<if test=" null != salary "> and `salary` = #{salary} </if>    
 		<if test=" null != jobDesc "> and `job_desc` = #{jobDesc} </if>    
 		<if test=" null != treatment "> and `treatment` = #{treatment} </if>    

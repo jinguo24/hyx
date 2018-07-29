@@ -14,6 +14,9 @@ public class Menu extends BaseModel {
 	/*名称**/
 	@io.swagger.annotations.ApiModelProperty(value="名称",name="name")
 	private String name;
+	/*英文名**/
+	@io.swagger.annotations.ApiModelProperty(value="英文名",name="englishName")
+	private String englishName;
 	/*排序**/
 	@io.swagger.annotations.ApiModelProperty(value="排序",name="sortNum")
 	private Integer sortNum;
@@ -49,7 +52,7 @@ public class Menu extends BaseModel {
 	/*链接的url**/
 	@io.swagger.annotations.ApiModelProperty(value="链接的url",name="linkUrl")
 	private String linkUrl;
-	/***/
+	/*banner图地址**/
 	@io.swagger.annotations.ApiModelProperty(value="banner图地址",name="bannerUrl")
 	private String bannerUrl;
 	
@@ -61,12 +64,17 @@ public class Menu extends BaseModel {
 	public void setSubMenus(List<Menu> subMenus) {
 		this.subMenus = subMenus;
 	}
-	
 	public String  getName() {
 		return name;
 	}
 	public void setName(String _name) {
 		name = _name;
+	}
+	public String  getEnglishName() {
+		return englishName;
+	}
+	public void setEnglishName(String _englishName) {
+		englishName = _englishName;
 	}
 	public Integer  getSortNum() {
 		return sortNum;
@@ -159,6 +167,7 @@ public class Menu extends BaseModel {
 	{
 		Id_ASC("`id` ASC"),Id_DESC("`id` DESC")
 			,Name_ASC("`name` ASC"),Name_DESC("`name` DESC")
+			,EnglishName_ASC("`englishName` ASC"),EnglishName_DESC("`englishName` DESC")
 			,SortNum_ASC("`sortNum` ASC"),SortNum_DESC("`sortNum` DESC")
 			,Status_ASC("`status` ASC"),Status_DESC("`status` DESC")
 			,IsBlank_ASC("`isBlank` ASC"),IsBlank_DESC("`isBlank` DESC")

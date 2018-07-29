@@ -18,6 +18,9 @@ public interface NewsService {
      */
 	PageInfo<News> listAsPage(News record, Integer pageIndex, Integer pageSize);
 	
+	
+	PageInfo<News> newestList(News record, Integer pageIndex, Integer pageSize);
+	
 	/**
      * 根据Id获得实体
      *

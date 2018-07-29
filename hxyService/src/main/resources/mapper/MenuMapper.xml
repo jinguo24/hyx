@@ -4,6 +4,7 @@
 	<resultMap id="BaseResultMap" type="com.simple.domain.po.Menu">
 		<id column="id" jdbcType="VARCHAR" property="id" />
 		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="english_name" jdbcType="VARCHAR" property="englishName" />
 		<result column="sort_num" jdbcType="INTEGER" property="sortNum" />
 		<result column="status" jdbcType="INTEGER" property="status" />
 		<result column="is_blank" jdbcType="INTEGER" property="isBlank" />
@@ -17,13 +18,14 @@
 	</resultMap>
 	
 	<sql id="allColumns">
-	    `id`,`name`,`sort_num`,`status`,`is_blank`,`parent_id`,`create_time`,`create_by`,`update_time`,`update_by`,`link_url`,`banner_url` 
+	    `id`,`name`,`english_name`,`sort_num`,`status`,`is_blank`,`parent_id`,`create_time`,`create_by`,`update_time`,`update_by`,`link_url`,`banner_url` 
 	</sql>
 
 	<sql id="dynamicWhereConditions">
 	        where 1 = 1
 		<if test=" null != id "> and `id` = #{id} </if>    
 		<if test=" null != name "> and `name` = #{name} </if>    
+		<if test=" null != englishName "> and `english_name` = #{englishName} </if>    
 		<if test=" null != sortNum "> and `sort_num` = #{sortNum} </if>    
 		<if test=" null != status "> and `status` = #{status} </if>    
 		<if test=" null != isBlank "> and `is_blank` = #{isBlank} </if>    

@@ -22,6 +22,11 @@ public class NewsServiceImpl implements NewsService {
     public PageInfo<News> listAsPage(News record, Integer pageIndex, Integer pageSize) {
         return PageHelper.startPage(pageIndex, pageSize,"query_count desc ").doSelectPageInfo(() -> newsMapper.findList(record));
     }
+    
+    @Override
+    public PageInfo<News> newestList(News record, Integer pageIndex, Integer pageSize) {
+        return PageHelper.startPage(pageIndex, pageSize,"push_time desc ").doSelectPageInfo(() -> newsMapper.findList(record));
+    }
 
     @Override
     public News getById(String id) {

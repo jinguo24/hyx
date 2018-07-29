@@ -8,6 +8,7 @@ import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -119,7 +120,10 @@ public class UserInfoController {
     
     @ApiOperation(value = "用户分页接口", response = String.class)
     @GetMapping("lists")
-    public ResultData listAsPage(UserInfo userInfo, Integer pageNum, Integer pageSize){
+    @ApiImplicitParams({
+	  @ApiImplicitParam(name="pageNum",value="页数",dataType="int", paramType = "query",required=true),
+	  @ApiImplicitParam(name="pageSize",value="每页条数",dataType="int", paramType = "query",required=true)})
+    public ResultData listAsPage(@ModelAttribute UserInfo userInfo, Integer pageNum, Integer pageSize){
         final PageInfo<UserInfo> page = userInfoService.listAsPage(userInfo, pageNum, pageSize);
         return new ResultData(page);
     }

@@ -24,7 +24,7 @@
 	<sql id="dynamicWhereConditions">
 	        where 1 = 1
 		<if test=" null != id "> and `id` = #{id} </if>    
-		<if test=" null != title "> and `title` = #{title} </if>    
+		<if test=" null != title "> and `title` LIKE '%${title}%' </if>    
 		<if test=" null != pushTime "> and `push_time` = #{pushTime} </if>    
 		<if test=" null != smallPicture "> and `small_picture` = #{smallPicture} </if>    
 		<if test=" null != status "> and `status` = #{status} </if>    

@@ -12,11 +12,14 @@ import com.simple.annotation.HoldBegin;
 import com.simple.annotation.HoldEnd;
 import com.simple.domain.po.GroupIntroduction;
 import com.simple.service.GroupIntroductionService;
+
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 
 @RestController
 @RequestMapping("groupIntroduction")
+@Api(description="集团介绍轮播接口")
 public class GroupIntroductionController extends BaseController
 {
 	@Autowired
@@ -34,27 +37,27 @@ public class GroupIntroductionController extends BaseController
         return new ResultData(page);
     }
 
-    @PostMapping("add")
-    public ResultData add(@RequestBody GroupIntroduction groupIntroduction) {
-        //Assert.notNull(groupIntroduction.getName(), "角色名不能为空");
-        //Assert.isTrue(!checkUnique(sysRole.getName(), null), "重复的角色名");
-        groupIntroductionService.saveOrUpdate(groupIntroduction);
-        return new ResultData();
-    }
-
-    @PostMapping("update")
-    public ResultData update(@RequestBody GroupIntroduction groupIntroduction) {
-        groupIntroductionService.saveOrUpdate(groupIntroduction);
-        return new ResultData();
-    }
-
-    @GetMapping("/del")
-     @ApiImplicitParam(name="id",value="id",dataType="String", paramType = "query",required=true)
-    public ResultData delete(String id) {
-        groupIntroductionService.deleteById(id);
-        return new ResultData(Result.SUCCESS, "删除成功", null);
-    }
-    
+//    @PostMapping("add")
+//    public ResultData add(@RequestBody GroupIntroduction groupIntroduction) {
+//        //Assert.notNull(groupIntroduction.getName(), "角色名不能为空");
+//        //Assert.isTrue(!checkUnique(sysRole.getName(), null), "重复的角色名");
+//        groupIntroductionService.saveOrUpdate(groupIntroduction);
+//        return new ResultData();
+//    }
+//
+//    @PostMapping("update")
+//    public ResultData update(@RequestBody GroupIntroduction groupIntroduction) {
+//        groupIntroductionService.saveOrUpdate(groupIntroduction);
+//        return new ResultData();
+//    }
+//
+//    @GetMapping("/del")
+//     @ApiImplicitParam(name="id",value="id",dataType="String", paramType = "query",required=true)
+//    public ResultData delete(String id) {
+//        groupIntroductionService.deleteById(id);
+//        return new ResultData(Result.SUCCESS, "删除成功", null);
+//    }
+//    
      @GetMapping("/findById")
      @ApiImplicitParam(name="id",value="id",dataType="String", paramType = "query",required=true)
     public ResultData findById(String id) {
