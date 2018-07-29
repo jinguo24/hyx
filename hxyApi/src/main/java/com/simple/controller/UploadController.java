@@ -5,13 +5,12 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.simple.FastDFSClientWrapper;
 import com.simple.common.rest.ResultData;
-import com.simple.config.FastDFSClientWrapper;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiParam;
