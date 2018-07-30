@@ -1,6 +1,7 @@
 package com.simple.controller;
 
 import org.apache.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +12,9 @@ import com.simple.common.rest.ResultData;
 import com.simple.annotation.HoldBegin;
 import com.simple.annotation.HoldEnd;
 import com.simple.domain.po.AreaProject;
+import com.simple.domain.po.UserInfo;
 import com.simple.service.AreaProjectService;
+import com.simple.shiro.UserSession;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -47,6 +50,9 @@ public class AreaProjectController extends BaseController
 
     @PostMapping("update")
     public ResultData update(@RequestBody AreaProject areaProject) {
+    	UserInfo info =(UserInfo) SecurityUtils.getSubject().getSession().getAttribute(UserSession.userInfo);
+    	areaProject.setCreateBy(info.getName());
+    	areaProject.setUpdateBy(info.getUsername());
         areaProjectService.saveOrUpdate(areaProject);
         return new ResultData();
     }

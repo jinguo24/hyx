@@ -1,16 +1,15 @@
 package com.simple.service.impl;
 
-import java.util.*;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
-import com.simple.annotation.HoldBegin;
-import com.simple.annotation.HoldEnd;
-import com.simple.domain.po.AreaProject;
-import com.simple.mapper.AreaProjectMapper;
-import com.simple.service.AreaProjectService;
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.simple.domain.po.AreaProject;
+import com.simple.mapper.AreaProjectMapper;
+import com.simple.service.AreaProjectService;
 @Service
 public class AreaProjectServiceImpl implements AreaProjectService {
 	
@@ -32,7 +31,7 @@ public class AreaProjectServiceImpl implements AreaProjectService {
     public void saveOrUpdate(AreaProject record) {
         if (record.getId() == null) {
             record.setId(UUID.randomUUID().toString().replaceAll("-", ""));
-            areaProjectMapper.insert(record);
+            areaProjectMapper.insertSelective(record);
         } else {
             areaProjectMapper.updateByPrimaryKeySelective(record);
         }

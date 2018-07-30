@@ -1,15 +1,15 @@
 package com.simple.service.impl;
 
-import java.util.*;
+import java.util.UUID;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.simple.annotation.HoldBegin;
-import com.simple.annotation.HoldEnd;
 import com.simple.domain.po.Question;
 import com.simple.mapper.QuestionMapper;
 import com.simple.service.QuestionService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 @Service
 public class QuestionServiceImpl implements QuestionService {
@@ -20,7 +20,7 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public PageInfo<Question> listAsPage(Question record, Integer pageIndex, Integer pageSize) {
-        return PageHelper.startPage(pageIndex, pageSize,"query_count desc ,sort_num desc").doSelectPageInfo(() -> questionMapper.findList(record));
+        return PageHelper.startPage(pageIndex, pageSize,"sort_num asc,query_count desc ").doSelectPageInfo(() -> questionMapper.findList(record));
     }
 
     @Override
@@ -32,7 +32,7 @@ public class QuestionServiceImpl implements QuestionService {
     public void saveOrUpdate(Question record) {
         if (record.getId() == null) {
             record.setId(UUID.randomUUID().toString().replaceAll("-", ""));
-            questionMapper.insert(record);
+            questionMapper.insertSelective(record);
         } else {
             questionMapper.updateByPrimaryKeySelective(record);
         }

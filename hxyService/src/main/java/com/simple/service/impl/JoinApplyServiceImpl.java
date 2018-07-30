@@ -32,7 +32,7 @@ public class JoinApplyServiceImpl implements JoinApplyService {
     public void saveOrUpdate(JoinApply record) {
         if (record.getId() == null) {
             record.setId(UUID.randomUUID().toString().replaceAll("-", ""));
-            joinApplyMapper.insert(record);
+            joinApplyMapper.insertSelective(record);
         } else {
             joinApplyMapper.updateByPrimaryKeySelective(record);
         }

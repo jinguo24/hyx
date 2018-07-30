@@ -32,7 +32,7 @@ public class ResumeServiceImpl implements ResumeService {
     public void saveOrUpdate(Resume record) {
         if (record.getId() == null) {
             record.setId(UUID.randomUUID().toString().replaceAll("-", ""));
-            resumeMapper.insert(record);
+            resumeMapper.insertSelective(record);
         } else {
             resumeMapper.updateByPrimaryKeySelective(record);
         }

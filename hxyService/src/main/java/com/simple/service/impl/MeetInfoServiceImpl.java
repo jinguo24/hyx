@@ -32,7 +32,7 @@ public class MeetInfoServiceImpl implements MeetInfoService {
     public void saveOrUpdate(MeetInfo record) {
         if (record.getId() == null) {
             record.setId(UUID.randomUUID().toString().replaceAll("-", ""));
-            meetInfoMapper.insert(record);
+            meetInfoMapper.insertSelective(record);
         } else {
             meetInfoMapper.updateByPrimaryKeySelective(record);
         }

@@ -41,6 +41,9 @@ public class MeetInfo extends BaseModel {
 	/*项目名称**/
 	@io.swagger.annotations.ApiModelProperty(value="项目名称",name="projectName")
 	private String projectName;
+	/*图片地址 用;隔开**/
+	@io.swagger.annotations.ApiModelProperty(value="图片地址 用;隔开",name="pics")
+	private String pics;
 	/*[GTE][LTE]**/
 	@io.swagger.annotations.ApiModelProperty(value="[GTE][LTE]",name="createTime")
 	private Date createTime;
@@ -121,6 +124,12 @@ public class MeetInfo extends BaseModel {
 	public void setProjectName(String _projectName) {
 		projectName = _projectName;
 	}
+	public String  getPics() {
+		return pics;
+	}
+	public void setPics(String _pics) {
+		pics = _pics;
+	}
 	public Date  getCreateTime() {
 		return createTime;
 	}
@@ -185,6 +194,7 @@ public class MeetInfo extends BaseModel {
 			,CityName_ASC("`cityName` ASC"),CityName_DESC("`cityName` DESC")
 			,ProjectId_ASC("`projectId` ASC"),ProjectId_DESC("`projectId` DESC")
 			,ProjectName_ASC("`projectName` ASC"),ProjectName_DESC("`projectName` DESC")
+			,Pics_ASC("`pics` ASC"),Pics_DESC("`pics` DESC")
 			,CreateTime_ASC("`createTime` ASC"),CreateTime_DESC("`createTime` DESC")
 			,CreateBy_ASC("`createBy` ASC"),CreateBy_DESC("`createBy` DESC")
 			,UpdateTime_ASC("`updateTime` ASC"),UpdateTime_DESC("`updateTime` DESC")

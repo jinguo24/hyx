@@ -32,7 +32,7 @@ public class ObtainEmploymentServiceImpl implements ObtainEmploymentService {
     public void saveOrUpdate(ObtainEmployment record) {
         if (record.getId() == null) {
             record.setId(UUID.randomUUID().toString().replaceAll("-", ""));
-            obtainEmploymentMapper.insert(record);
+            obtainEmploymentMapper.insertSelective(record);
         } else {
             obtainEmploymentMapper.updateByPrimaryKeySelective(record);
         }

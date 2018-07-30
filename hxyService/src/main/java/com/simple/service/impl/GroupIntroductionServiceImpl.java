@@ -32,7 +32,7 @@ public class GroupIntroductionServiceImpl implements GroupIntroductionService {
     public void saveOrUpdate(GroupIntroduction record) {
         if (record.getId() == null) {
             record.setId(UUID.randomUUID().toString().replaceAll("-", ""));
-            groupIntroductionMapper.insert(record);
+            groupIntroductionMapper.insertSelective(record);
         } else {
             groupIntroductionMapper.updateByPrimaryKeySelective(record);
         }

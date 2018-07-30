@@ -37,7 +37,7 @@ public class NewsServiceImpl implements NewsService {
     public void saveOrUpdate(News record) {
         if (record.getId() == null) {
             record.setId(UUID.randomUUID().toString().replaceAll("-", ""));
-            newsMapper.insert(record);
+            newsMapper.insertSelective(record);
         } else {
             newsMapper.updateByPrimaryKeySelective(record);
         }

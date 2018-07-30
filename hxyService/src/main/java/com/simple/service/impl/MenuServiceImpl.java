@@ -20,7 +20,7 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     public PageInfo<Menu> listAsPage(Menu record, Integer pageIndex, Integer pageSize) {
-        return PageHelper.startPage(pageIndex, pageSize,"sort_num desc ").doSelectPageInfo(() -> menuMapper.findList(record));
+        return PageHelper.startPage(pageIndex, pageSize,"sort_num asc ").doSelectPageInfo(() -> menuMapper.findList(record));
     }
 
     @Override

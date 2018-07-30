@@ -20,7 +20,7 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public PageInfo<Project> listAsPage(Project record, Integer pageIndex, Integer pageSize) {
-        return PageHelper.startPage(pageIndex, pageSize,"sort_num desc ").doSelectPageInfo(() -> projectMapper.findList(record));
+        return PageHelper.startPage(pageIndex, pageSize,"sort_num asc ").doSelectPageInfo(() -> projectMapper.findList(record));
     }
 
     @Override
@@ -32,7 +32,7 @@ public class ProjectServiceImpl implements ProjectService {
     public void saveOrUpdate(Project record) {
         if (record.getId() == null) {
             record.setId(UUID.randomUUID().toString().replaceAll("-", ""));
-            projectMapper.insert(record);
+            projectMapper.insertSelective(record);
         } else {
             projectMapper.updateByPrimaryKeySelective(record);
         }

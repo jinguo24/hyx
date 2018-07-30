@@ -32,7 +32,7 @@ public class JobServiceImpl implements JobService {
     public void saveOrUpdate(Job record) {
         if (record.getId() == null) {
             record.setId(UUID.randomUUID().toString().replaceAll("-", ""));
-            jobMapper.insert(record);
+            jobMapper.insertSelective(record);
         } else {
             jobMapper.updateByPrimaryKeySelective(record);
         }

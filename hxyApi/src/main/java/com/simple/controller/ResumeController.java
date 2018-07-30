@@ -66,6 +66,7 @@ public class ResumeController extends BaseController
 //    	return new ResultData(Result.SUCCESS,"查询成功",resumeService.getById(id));
 //    }
 //	
+    
 	
 	
 }

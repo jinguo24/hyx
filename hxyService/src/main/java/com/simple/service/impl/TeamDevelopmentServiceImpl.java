@@ -20,7 +20,7 @@ public class TeamDevelopmentServiceImpl implements TeamDevelopmentService {
 
     @Override
     public PageInfo<TeamDevelopment> listAsPage(TeamDevelopment record, Integer pageIndex, Integer pageSize) {
-        return PageHelper.startPage(pageIndex, pageSize," sort_num desc ").doSelectPageInfo(() -> teamDevelopmentMapper.findList(record));
+        return PageHelper.startPage(pageIndex, pageSize," sort_num asc ").doSelectPageInfo(() -> teamDevelopmentMapper.findList(record));
     }
 
     @Override
@@ -32,7 +32,7 @@ public class TeamDevelopmentServiceImpl implements TeamDevelopmentService {
     public void saveOrUpdate(TeamDevelopment record) {
         if (record.getId() == null) {
             record.setId(UUID.randomUUID().toString().replaceAll("-", ""));
-            teamDevelopmentMapper.insert(record);
+            teamDevelopmentMapper.insertSelective(record);
         } else {
             teamDevelopmentMapper.updateByPrimaryKeySelective(record);
         }

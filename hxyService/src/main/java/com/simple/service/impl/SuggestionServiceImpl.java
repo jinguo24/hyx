@@ -32,7 +32,7 @@ public class SuggestionServiceImpl implements SuggestionService {
     public void saveOrUpdate(Suggestion record) {
         if (record.getId() == null) {
             record.setId(UUID.randomUUID().toString().replaceAll("-", ""));
-            suggestionMapper.insert(record);
+            suggestionMapper.insertSelective(record);
         } else {
             suggestionMapper.updateByPrimaryKeySelective(record);
         }

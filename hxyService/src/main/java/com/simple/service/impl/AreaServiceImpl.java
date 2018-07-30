@@ -32,7 +32,7 @@ public class AreaServiceImpl implements AreaService {
     public void saveOrUpdate(Area record) {
         if (record.getId() == null) {
             record.setId(UUID.randomUUID().toString().replaceAll("-", ""));
-            areaMapper.insert(record);
+            areaMapper.insertSelective(record);
         } else {
             areaMapper.updateByPrimaryKeySelective(record);
         }

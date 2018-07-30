@@ -32,7 +32,7 @@ public class RecruitServiceImpl implements RecruitService {
     public void saveOrUpdate(Recruit record) {
         if (record.getId() == null) {
             record.setId(UUID.randomUUID().toString().replaceAll("-", ""));
-            recruitMapper.insert(record);
+            recruitMapper.insertSelective(record);
         } else {
             recruitMapper.updateByPrimaryKeySelective(record);
         }

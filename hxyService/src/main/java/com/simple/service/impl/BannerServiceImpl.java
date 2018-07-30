@@ -20,7 +20,7 @@ public class BannerServiceImpl implements BannerService {
 
     @Override
     public PageInfo<Banner> listAsPage(Banner record, Integer pageIndex, Integer pageSize) {
-        return PageHelper.startPage(pageIndex, pageSize,"sort_num desc").doSelectPageInfo(() -> bannerMapper.findList(record));
+        return PageHelper.startPage(pageIndex, pageSize,"sort_num asc").doSelectPageInfo(() -> bannerMapper.findList(record));
     }
 
     @Override
@@ -32,7 +32,7 @@ public class BannerServiceImpl implements BannerService {
     public void saveOrUpdate(Banner record) {
         if (record.getId() == null) {
             record.setId(UUID.randomUUID().toString().replaceAll("-", ""));
-            bannerMapper.insert(record);
+            bannerMapper.insertSelective(record);
         } else {
             bannerMapper.updateByPrimaryKeySelective(record);
         }

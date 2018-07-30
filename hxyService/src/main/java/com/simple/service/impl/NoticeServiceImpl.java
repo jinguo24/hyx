@@ -32,7 +32,7 @@ public class NoticeServiceImpl implements NoticeService {
     public void saveOrUpdate(Notice record) {
         if (record.getId() == null) {
             record.setId(UUID.randomUUID().toString().replaceAll("-", ""));
-            noticeMapper.insert(record);
+            noticeMapper.insertSelective(record);
         } else {
             noticeMapper.updateByPrimaryKeySelective(record);
         }
