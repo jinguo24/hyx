@@ -26,14 +26,15 @@ spring:
 
   # REDIS
   redis:
-    host: 47.100.34.187
-    port: 6379
+    host: 47.104.189.214
+    port: 6789
+    password: JGtest123
     timeout: 0
     expire: 1800 #30分钟
     pool:
       max-active: 18
       max-idle: 18
-      max-wait: 60
+      max-wait: -1
       min-idle: 0
 logging:
   level:

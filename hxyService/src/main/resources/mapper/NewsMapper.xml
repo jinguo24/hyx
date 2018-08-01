@@ -15,16 +15,17 @@
 		<result column="update_by" jdbcType="VARCHAR" property="updateBy" />
 		<result column="type" jdbcType="INTEGER" property="type" />
 		<result column="query_count" jdbcType="INTEGER" property="queryCount" />
+		<result column="description" jdbcType="VARCHAR" property="description" />
 	</resultMap>
 	
 	<sql id="allColumns">
-	    `id`,`title`,`push_time`,`small_picture`,`status`,`picture_name`,`content`,`create_time`,`create_by`,`update_time`,`update_by`,`type`,`query_count` 
+	    `id`,`title`,`push_time`,`small_picture`,`status`,`picture_name`,`content`,`create_time`,`create_by`,`update_time`,`update_by`,`type`,`query_count`,`description` 
 	</sql>
 
 	<sql id="dynamicWhereConditions">
 	        where 1 = 1
 		<if test=" null != id "> and `id` = #{id} </if>    
-		<if test=" null != title "> and `title` LIKE '%${title}%' </if>    
+		<if test=" null != title "> and `title` = #{title} </if>    
 		<if test=" null != pushTime "> and `push_time` = #{pushTime} </if>    
 		<if test=" null != smallPicture "> and `small_picture` = #{smallPicture} </if>    
 		<if test=" null != status "> and `status` = #{status} </if>    
@@ -40,6 +41,7 @@
 		<if test=" null != updateBy "> and `update_by` = #{updateBy} </if>    
 		<if test=" null != type "> and `type` = #{type} </if>    
 		<if test=" null != queryCount "> and `query_count` = #{queryCount} </if>    
+		<if test=" null != description "> and `description` = #{description} </if>    
 		<if test=" null != ids ">
 		 	and id in  
 			<foreach collection="ids" index="index" item="idItem" open="(" separator="," close=")">

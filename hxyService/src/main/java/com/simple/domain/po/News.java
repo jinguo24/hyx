@@ -55,6 +55,9 @@ public class News extends BaseModel {
 	/*浏览数**/
 	@io.swagger.annotations.ApiModelProperty(value="浏览数",name="queryCount")
 	private Integer queryCount;
+	/*描述**/
+	@io.swagger.annotations.ApiModelProperty(value="描述",name="description")
+	private String description;
 	public String  getTitle() {
 		return title;
 	}
@@ -151,6 +154,12 @@ public class News extends BaseModel {
 	public void setQueryCount(Integer _queryCount) {
 		queryCount = _queryCount;
 	}
+	public String  getDescription() {
+		return description;
+	}
+	public void setDescription(String _description) {
+		description = _description;
+	}
 
 
 
@@ -169,6 +178,7 @@ public class News extends BaseModel {
 			,UpdateBy_ASC("`updateBy` ASC"),UpdateBy_DESC("`updateBy` DESC")
 			,Type_ASC("`type` ASC"),Type_DESC("`type` DESC")
 			,QueryCount_ASC("`queryCount` ASC"),QueryCount_DESC("`queryCount` DESC")
+			,Description_ASC("`description` ASC"),Description_DESC("`description` DESC")
 	;
 		private String value;
 		Field(String value){
