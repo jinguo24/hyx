@@ -85,7 +85,11 @@ public class NewsController extends BaseController
     	 News news = newsService.getById(id);
     	 News temp =new News();
     	 temp.setId(news.getId());
-    	 temp.setQueryCount(news.getQueryCount()+1);
+    	 if(news.getQueryCount()==null) {
+    		 temp.setQueryCount(1);
+    	 }else {
+    		 temp.setQueryCount(news.getQueryCount()+1);
+    	 }
     	 newsService.saveOrUpdate(temp); 
     	return new ResultData(Result.SUCCESS,"查询成功",news);
     }
