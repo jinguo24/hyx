@@ -46,6 +46,9 @@ public class Project extends BaseModel {
 	/*排序**/
 	@io.swagger.annotations.ApiModelProperty(value="排序",name="sortNum")
 	private Integer sortNum;
+	/*图标**/
+	@io.swagger.annotations.ApiModelProperty(value="图标",name="ico")
+	private String ico;
 	public String  getName() {
 		return name;
 	}
@@ -124,6 +127,12 @@ public class Project extends BaseModel {
 	public void setSortNum(Integer _sortNum) {
 		sortNum = _sortNum;
 	}
+	public String  getIco() {
+		return ico;
+	}
+	public void setIco(String _ico) {
+		ico = _ico;
+	}
 
 
 
@@ -139,6 +148,7 @@ public class Project extends BaseModel {
 			,Description_ASC("`description` ASC"),Description_DESC("`description` DESC")
 			,MoreLink_ASC("`moreLink` ASC"),MoreLink_DESC("`moreLink` DESC")
 			,SortNum_ASC("`sortNum` ASC"),SortNum_DESC("`sortNum` DESC")
+			,Ico_ASC("`ico` ASC"),Ico_DESC("`ico` DESC")
 	;
 		private String value;
 		Field(String value){

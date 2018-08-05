@@ -15,10 +15,11 @@
 		<result column="create_by" jdbcType="VARCHAR" property="createBy" />
 		<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
 		<result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+		<result column="phone" jdbcType="VARCHAR" property="phone" />
 	</resultMap>
 	
 	<sql id="allColumns">
-	    `id`,`provice_id`,`city_id`,`area_id`,`provice_name`,`city_name`,`area_name`,`project_id`,`project_name`,`create_time`,`create_by`,`update_time`,`update_by` 
+	    `id`,`provice_id`,`city_id`,`area_id`,`provice_name`,`city_name`,`area_name`,`project_id`,`project_name`,`create_time`,`create_by`,`update_time`,`update_by`,`phone` 
 	</sql>
 
 	<sql id="dynamicWhereConditions">
@@ -40,6 +41,7 @@
 		<if test=" null != updateTimeGte ">  and `update_time`  >= #{updateTimeGte} </if>  
 		<if test=" null != updateTimeLte "> and #{updateTimeLte}  >=  `update_time` </if>  
 		<if test=" null != updateBy "> and `update_by` = #{updateBy} </if>    
+		<if test=" null != phone "> and `phone` = #{phone} </if>    
 		<if test=" null != ids ">
 		 	and id in  
 			<foreach collection="ids" index="index" item="idItem" open="(" separator="," close=")">

@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.Transient;
 
+import com.simple.domain.po.AreaProject;
+
 public class AreaProjectVo implements Serializable{
 	
 	/**
@@ -17,13 +19,13 @@ public class AreaProjectVo implements Serializable{
 	private String id;
 	
 	@Transient
-	private List<String> projectIds;
+	private List<AreaProject> areaProjects;
 	
-	public List<String> getProjectIds() {
-		return projectIds;
+	public List<AreaProject> getAreaProjects() {
+		return areaProjects;
 	}
-	public void setProjectIds(List<String> projectIds) {
-		this.projectIds = projectIds;
+	public void setAreaProjects(List<AreaProject> areaProjects) {
+		this.areaProjects = areaProjects;
 	}
 	public String getName() {
 		return Name;

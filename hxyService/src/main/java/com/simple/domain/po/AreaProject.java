@@ -55,6 +55,9 @@ public class AreaProject extends BaseModel {
 	/***/
 	@io.swagger.annotations.ApiModelProperty(value="",name="updateBy")
 	private String updateBy;
+	/*电话**/
+	@io.swagger.annotations.ApiModelProperty(value="电话",name="phone")
+	private String phone;
 	public String  getProviceId() {
 		return proviceId;
 	}
@@ -151,6 +154,12 @@ public class AreaProject extends BaseModel {
 	public void setUpdateBy(String _updateBy) {
 		updateBy = _updateBy;
 	}
+	public String  getPhone() {
+		return phone;
+	}
+	public void setPhone(String _phone) {
+		phone = _phone;
+	}
 
 
 
@@ -169,6 +178,7 @@ public class AreaProject extends BaseModel {
 			,CreateBy_ASC("`createBy` ASC"),CreateBy_DESC("`createBy` DESC")
 			,UpdateTime_ASC("`updateTime` ASC"),UpdateTime_DESC("`updateTime` DESC")
 			,UpdateBy_ASC("`updateBy` ASC"),UpdateBy_DESC("`updateBy` DESC")
+			,Phone_ASC("`phone` ASC"),Phone_DESC("`phone` DESC")
 	;
 		private String value;
 		Field(String value){

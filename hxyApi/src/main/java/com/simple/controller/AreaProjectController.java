@@ -1,7 +1,9 @@
 package com.simple.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,12 +93,12 @@ public class AreaProjectController extends BaseController
     		 vo.setName(a.getName());
     		 AreaProject ap = new AreaProject();
     		 ap.setProviceId(a.getId());
-    		 PageInfo<AreaProject> aps = areaProjectService.listAsPage(ap,1,10);
-    		 List<String> list = new ArrayList<>();
+    		 PageInfo<AreaProject> aps = areaProjectService.listAsPage(ap,1,100);
+    		 List<AreaProject> list = new ArrayList<>();
     		 for(AreaProject p :aps.getList()) {
-    			 list.add(p.getId());
+    			 list.add(p);
     		 }
-    		 vo.setProjectIds(list);
+    		 vo.setAreaProjects(list);
     		 vos.add(vo);
     	 }
 		return new ResultData(Result.SUCCESS,"查询成功",vos);
