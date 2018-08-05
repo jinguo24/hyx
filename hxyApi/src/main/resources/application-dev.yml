@@ -19,6 +19,7 @@ spring:
     testOnReturn: false
     poolPreparedStatements: true
     maxOpenPreparedStatements: 20
+    connectionProperties: "druid.stat.mergeSql=true;druid.stat.slowSqlMillis=6000"
   jackson: 
     date-format: yyyy-MM-dd HH:mm:ss
   jmx:
